@@ -1,15 +1,14 @@
 export default class Player {
-  constructor(object, sprite) {
-    this.player = object.physics.add.sprite(100, 450, sprite);
+  constructor(object, sprite, x, y) {
+    this.player = object.physics.add.sprite(x, y, sprite);
 
     this.player.setBounce(0.2);
-    this.player.setCollideWorldBounds(true);
 
     object.anims.create({
-        key: 'left',
-        frames: object.anims.generateFrameNumbers(sprite, { start: 0, end: 3 }),
-        frameRate: 10,
-        repeat: -1
+      key: 'left',
+      frames: object.anims.generateFrameNumbers(sprite, { start: 0, end: 3 }),
+      frameRate: 10,
+      repeat: -1
     });
 
     object.anims.create({
