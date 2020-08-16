@@ -18,28 +18,28 @@ window.onload = function(){
           }
       }
     },
-    scene: [preloadGame, playGame]
+    scene: [preloadGame, playGame, playGame2]
   }
   game = new Phaser.Game(gameConfig);
 }
 
 import Player from "./player.js"
 import Cursor from './cursor.js'
-
 export default class playGame extends Phaser.Scene {
   constructor() {
     super("PlayGame");
     this.hasOrb = false
   }
   create() {
+
     this.gameOver = false
     // create an tiled sprite with the size of our game screen
-    this.mountain = this.add.tileSprite(0, 0, game.config.width, game.config.height, "sky");
+    this.sky = this.add.tileSprite(0, 0, game.config.width, game.config.height, "sky");
     // Set its pivot to the top left corner
-    this.mountain.setOrigin(0, 0);
+    this.sky.setOrigin(0, 0);
     // fixe it so it won't move when the camera moves.
     // Instead we are moving its texture on the update
-    this.mountain.setScrollFactor(0);
+    this.sky.setScrollFactor(0);
 
     this.platforms = this.physics.add.staticGroup();
 
@@ -76,15 +76,12 @@ export default class playGame extends Phaser.Scene {
     new Platform(this, 8, 1, 1850, 250)
     new Platform(this, 1, 8, 1930, 250)
 
+    this.finish = this.physics.add.sprite(3200, 500, 'finish')
+    this.physics.add.collider(this.finish, this.platforms)
+
+
     this.portal = this.physics.add.sprite(1900, 200, 'teleporter')
     this.physics.add.collider(this.portal, this.platforms)
-
-
-
-
-
-
-
 
     this.orb = this.physics.add.sprite(900, 100, 'blue_ball')
     this.physics.add.collider(this.orb, this.platforms)
@@ -92,7 +89,7 @@ export default class playGame extends Phaser.Scene {
 
 
     // add player
-    this.player = new Player(this, 'dude', 50, 300).getPlayer()
+    this.player = new Player(this, 'dude', 3100, 300).getPlayer()
     // create an animation for the player
     this.cursor = new Cursor(this, this.player)
 
@@ -103,6 +100,7 @@ export default class playGame extends Phaser.Scene {
 
     this.physics.add.overlap(this.player, this.orb, this.collectOrb, null, this);
     this.physics.add.overlap(this.player, this.portal, this.teleport, null, this);
+    this.physics.add.overlap(this.player, this.finish, this.endGame, null, this);
     this.physics.add.collider(this.player, this.platforms);
     this.physics.add.collider(this.player, this.spikes, this.hitSpike, null, this);
 
@@ -132,6 +130,18 @@ export default class playGame extends Phaser.Scene {
     this.player.y = 550
   }
 
+  endGame() {
+    // console.log("test")
+    // this.physics.pause()
+    // this.scene.remove()
+    this.changeLevel()
+    // this.scene.scene.stop()
+  }
+
+  changeLevel() {
+    this.scene.start('PlayGame2');
+  }
+
   checkGameOver() {
     if (this.player.y > 620 || this.gameOver) {
       this.gameOver = this.add.tileSprite( Math.floor(this.myCam.scrollX), 0, game.config.width, game.config.height, "noon");
@@ -143,7 +153,97 @@ export default class playGame extends Phaser.Scene {
 
 
   update() {
+    this.cursor.setUpMoves()
+    let cursor = this.cursor.getCursor()
 
+    if(this.hasOrb === true && cursor.left.isDown) {
+
+      this.player.x = this.player.x - 100
+      this.hasOrb = false
+    }
+    this.checkGameOver()
+
+    // scroll the texture of the tilesprites proportionally to the camera scroll
+    this.sky.tilePositionX = this.myCam.scrollX * .3;
+    this.sky.tilePositionY = this.myCam.scrollY * .3;
+  }
+}
+
+
+class playGame2 extends Phaser.Scene {
+  constructor() {
+    super("PlayGame2");
+    this.hasOrb = false
+  }
+  create() {
+    this.gameOver = false
+    // create an tiled sprite with the size of our game screen
+    this.mountain = this.add.tileSprite(0, 0, game.config.width, game.config.height, "sky");
+    // Set its pivot to the top left corner
+    this.mountain.setOrigin(0, 0);
+    // fixe it so it won't move when the camera moves.
+    // Instead we are moving its texture on the update
+    this.mountain.setScrollFactor(0);
+
+    this.platforms = this.physics.add.staticGroup();
+
+    new Ground(this, 8, 0, 600)
+
+    // add player
+    this.player = new Player(this, 'dude', 50, 300).getPlayer()
+    // create an animation for the player
+    this.cursor = new Cursor(this, this.player)
+    // allow key inputs to control the player
+    this.cursors = this.input.keyboard.createCursorKeys();
+
+
+    this.physics.add.collider(this.player, this.platforms);
+    // this.physics.add.collider(this.player, this.spikes, this.hitSpike, null, this);
+
+    // set workd bounds to allow camera to follow the player
+    this.myCam = this.cameras.main;
+    this.myCam.setBounds(0, -600, game.config.width * 10, game.config.height * 2);
+
+    // making the camera follow the player
+    this.myCam.startFollow(this.player);
+
+  }
+
+  hitSpike() {
+    this.gameOver = true
+  }
+
+  collectOrb() {
+    this.orb.disableBody(true, true)
+    this.hasOrb = true
+  }
+
+  teleport() {
+    this.player.x = 3100
+    this.player.y = 550
+  }
+
+  endGame() {
+    // console.log("test")
+    this.changeLevel()
+    // this.scene.scene.stop()
+  }
+
+  changeLevel() {
+
+  }
+
+  checkGameOver() {
+    if (this.player.y > 620 || this.gameOver) {
+      this.gameOver = this.add.tileSprite( Math.floor(this.myCam.scrollX), 0, game.config.width, game.config.height, "noon");
+      this.gameOver.setOrigin(0, 0);
+      this.physics.pause();
+      this.cursor.addRestart();
+    }
+  }
+
+
+  update() {
     this.cursor.setUpMoves()
     let cursor = this.cursor.getCursor()
 
