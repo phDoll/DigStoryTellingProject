@@ -2,7 +2,7 @@
 // import Cursor from './cursor.JS'
 
 import preloadGame from './preloadGame.js'
-import playGame from './playGame.js'
+import playGame from './titleScreen.js'
 
 // var config = {
 //   type: Phaser.AUTO,
