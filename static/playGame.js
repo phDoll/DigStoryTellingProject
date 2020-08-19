@@ -3,6 +3,8 @@ import Platform from './platform.js'
 import Block from './block.js'
 import Ground from './ground.js'
 import Spikes from './spikes.js'
+import Text from './text.js'
+import NPC from './npc.js'
 var game;
 window.onload = function(){
   let gameConfig = {
@@ -40,6 +42,8 @@ export default class playGame extends Phaser.Scene {
     // fixe it so it won't move when the camera moves.
     // Instead we are moving its texture on the update
     this.sky.setScrollFactor(0);
+
+
 
     this.platforms = this.physics.add.staticGroup();
 
@@ -89,7 +93,8 @@ export default class playGame extends Phaser.Scene {
 
 
     // add player
-    this.player = new Player(this, 'dude', 3100, 300).getPlayer()
+    this.player = new Player(this, 'dude', 50, 300).getPlayer()
+    this.npc = new NPC(this, 'dude', 450, 300).getNPC()
     // create an animation for the player
     this.cursor = new Cursor(this, this.player)
 
@@ -102,6 +107,7 @@ export default class playGame extends Phaser.Scene {
     this.physics.add.overlap(this.player, this.portal, this.teleport, null, this);
     this.physics.add.overlap(this.player, this.finish, this.endGame, null, this);
     this.physics.add.collider(this.player, this.platforms);
+    this.physics.add.collider(this.npc, this.platforms);
     this.physics.add.collider(this.player, this.spikes, this.hitSpike, null, this);
 
 
@@ -155,6 +161,10 @@ export default class playGame extends Phaser.Scene {
   update() {
     this.cursor.setUpMoves()
     let cursor = this.cursor.getCursor()
+
+    if(this.player.x >= 430) {
+      this.text = new Text(this, 150, 200, 250, "Ah da ist ja das arme Ding gefangen in der Zeitschleife. Laufe zum Ende dieser Zeitlinie und du schaffst diesen Teil der Zeitschleife zu entkommen. Ach ja ich hab da etwas gehört, um die Zeitschleife endgültig zu verlassen, musst du den Raum-Zeitkrümmer finden. Der ist glaub ich auf dem Mars ca. 600 Jahre in der Zukunft, ich glaub nicht, dass du so lange warten willst.")
+    }
 
     if(this.hasOrb === true && cursor.left.isDown) {
 
