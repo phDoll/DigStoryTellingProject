@@ -10,6 +10,7 @@ import NPC from './npc.js'
 import Level2 from './level2.js'
 import Level1 from './level1.js'
 import Level3 from './level3.js'
+import Level4 from './level4.js'
 var game;
 window.onload = function(){
   let gameConfig = {
@@ -25,7 +26,7 @@ window.onload = function(){
           }
       }
     },
-    scene: [preloadGame, titleScreen, Level1, Level2, Level3]
+    scene: [preloadGame, titleScreen, Level1, Level2, Level3, Level4]
   }
   game = new Phaser.Game(gameConfig);
 }
@@ -50,7 +51,7 @@ export default class titleScreen extends Phaser.Scene {
   }
 
   changeScene() {
-    this.scene.start('Level3');
+    this.scene.start('Level4');
   }
 
 

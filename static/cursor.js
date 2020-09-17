@@ -52,6 +52,8 @@ export default class Cursor {
       }
     }
 
+
+
     // Speed Boost
 
 

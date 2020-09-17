@@ -74,9 +74,7 @@ export default class Level3 extends Phaser.Scene {
     this.finish = this.physics.add.sprite(3150, 300, 'finish')
     this.physics.add.collider(this.finish, this.platforms)
 
-    this.orb = this.physics.add.sprite(1850, -20, 'blue_ball')
     this.physics.add.overlap(this.player, this.portal, this.teleport, null, this);
-    this.physics.add.overlap(this.player, this.orb, this.collectOrb, null, this);
     this.physics.add.overlap(this.player, this.finish, this.endGame, null, this);
     this.physics.add.collider(this.orb, this.platforms)
 
@@ -193,9 +191,5 @@ export default class Level3 extends Phaser.Scene {
         bomb.setVelocity(yVelocity, 100);
       }
     }
-
-
-
-
   }
 }
