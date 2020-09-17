@@ -1,8 +1,11 @@
 export default class Cursor {
-  constructor(object, player) {
+  constructor(object, player, velocity, doubleJump, sprint) {
     this.object = object
     this.cursor = object.input.keyboard.createCursorKeys();
     this.player = player
+    this.jumpVelocity = velocity
+    this.doubleJump = doubleJump
+    this.sprint = sprint
   }
 
   getCursor() {
@@ -19,6 +22,10 @@ export default class Cursor {
     //   this.player.setVelocityX(-160);
 
     //   this.player.anims.play('left', true);
+    } else if (this.cursor.space.isDown) {
+      this.player.setVelocityX(460);
+
+      this.player.anims.play('right', true);
     }
     else
     {
@@ -29,25 +36,24 @@ export default class Cursor {
 
 
     // Double jump
-    // const didPressJump = Phaser.Input.Keyboard.JustDown(this.cursor.up);
+    if (this.doubleJump) {
+      const didPressJump = Phaser.Input.Keyboard.JustDown(this.cursor.up);
 
-    // if (didPressJump) {
-    //   if (this.player.body.onFloor()) {
-    //     // player can only double jump if it is on the floor
-    //     this.canDoubleJump = true;
-    //     this.player.body.setVelocityY(-350);
-    //   } else if (this.canDoubleJump) {
-    //     // player can only jump 2x (double jump)
-    //     this.canDoubleJump = false;
-    //     this.player.body.setVelocityY(-500);
-    //   }
-    // }
+      if (didPressJump) {
+        if (this.player.body.onFloor()) {
+          // player can only double jump if it is on the floor
+          this.canDoubleJump = true;
+          this.player.body.setVelocityY(this.jumpVelocity);
+        } else if (this.canDoubleJump) {
+          // player can only jump 2x (double jump)
+          this.canDoubleJump = false;
+          this.player.body.setVelocityY(this.jumpVelocity * 2);
+        }
+      }
+    }
 
     // Speed Boost
-    // if (this.cursor.space.isDown) {
-    //   this.player.setVelocityX(460);
-    //   this.player.anims.play('right', true);
-    // }
+
 
     // if (this.cursor.shift.isDown) {
     //   this.player.setVelocityY(-100);
@@ -56,7 +62,7 @@ export default class Cursor {
     // Normal Jump
     if (this.cursor.up.isDown && this.player.body.touching.down)
     {
-        this.player.setVelocityY(-300);
+        this.player.setVelocityY(this.jumpVelocity);
     }
   }
 

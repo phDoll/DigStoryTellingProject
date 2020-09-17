@@ -7,10 +7,12 @@ import Text from './text.js'
 import Player from "./player.js"
 import Cursor from './cursor.js'
 import NPC from './npc.js'
-export default class Level2 extends Phaser.Scene {
+export default class Level3 extends Phaser.Scene {
   constructor() {
-    super("Level2");
+    super("Level3");
     this.hasOrb = false
+    this.firstStage = 0
+    this.thirdStage = 0
   }
   create() {
     this.gameOver = false
@@ -26,69 +28,46 @@ export default class Level2 extends Phaser.Scene {
     this.spikes = this.physics.add.staticGroup();
 
 
+    // World Bounds
 
-    new Ground(this, 8, 0, 600)
+    new Platform(this, 320, 1, 0, 600)
+    new Platform(this, 2, 80, -20, 600)
+    new Platform(this, 1, 80, 3200, 600)
+    new Platform(this, 320, 1, 0, 0)
 
 
-    new Platform(this, 12, 1, 200, 550)
-    new Platform(this, 12, 1, 300, 350)
-    new Platform(this, 24, 1, 400, 100)
-    new Platform(this, 1, 30, 630, 400)
-    new Platform(this, 12, 1, 630, 600)
-    new Platform(this, 20, 1, 880, 600)
-    new Platform(this, 6, 1, 1120, 370)
-    new Platform(this, 1, 20, 1180, 370)
-    new Platform(this, 24, 1, 1180, 160)
-    new Platform(this, 24, 1, 1180, 10)
-    new Platform(this, 2, 1, 1240, 140)
-    new Platform(this, 2, 1, 1360, 140)
-    new Platform(this, 6, 1, 1800, 20)
-    new Platform(this, 12, 1, 1200, 550)
+    // Spikes
+
+    // First Room
+    new Platform(this, 2, 80, 500, 520)
+    new Platform(this, 2, 80, 1000, 520)
+
+    // Second Room
+    new Platform(this, 2, 80, 2000, 520)
+    new Platform(this, 1, 1, 1100, 400)
     new Platform(this, 1, 1, 1400, 400)
-    new Platform(this, 1, 1, 1550, 400)
-    new Platform(this, 1, 1, 1700, 400)
-    new Platform(this, 1, 1, 1900, 600)
-    new Platform(this, 12, 1, 2200, 380)
+    new Platform(this, 1, 1, 1600, 550)
+    new Platform(this, 1, 1, 1700, 200)
+    new Platform(this, 12, 1, 1750, 300)
+    new Platform(this, 1, 8, 1800, 100)
+    new Spikes(this, 50, 1100, 580)
+    new Spikes(this, 6, 1760, 280)
+    new Spikes(this, 6, 1760, 280)
+    new Spikes(this, 1, 1980, 450)
 
-    // Cage
-    new Platform(this, 12, 1, 1900, 150)
-    new Platform(this, 12, 1, 1900, 290)
-    new Platform(this, 1, 12, 1900, 270)
-    new Platform(this, 1, 12, 2010, 270)
-    new Spikes(this, 6, 1910, 120)
-    this.portal = this.physics.add.sprite(1980, 250, 'teleporter')
-    this.physics.add.collider(this.portal, this.platforms)
+    // Thrid Room
+    new Platform(this, 2, 80, 3000, 520)
+    new Platform(this, 1, 8, 2200, 600)
+    new Platform(this, 20, 1, 2400, 300)
+    new Platform(this, 1, 8, 2600, 600)
+    new Spikes(this, 3, 2550, 580)
 
-
-    // Pipe Section
-    new Platform(this, 2, 42, 2550, 600)
-    new Platform(this, 2, 42, 2550, 80)
-    new Spikes(this, 1, 2530, 200)
-    new Spikes(this, 1, 2530, 220)
-
-    new Platform(this, 2, 18, 2750, 600)
-    new Platform(this, 2, 64, 2750, 300)
-    new Spikes(this, 1, 2730, 240)
-    new Spikes(this, 1, 2730, 260)
-
-    new Platform(this, 32, 18, 2950, 600)
-    new Platform(this, 2, 64, 2950, 340)
-    new Spikes(this, 1, 2940, 310)
-
-
-
-
-
-    new Spikes(this, 1, 400, 320)
-    new Spikes(this, 2, 890, 570)
-    new Spikes(this, 2, 1050, 570)
-    new Spikes(this, 12, 1200, 30)
-
+    new Spikes(this, 200, 0, 20)
 
     // add player
-    this.player = new Player(this, 'dude', 2950, 350).getPlayer()
+    this.player = new Player(this, 'dude', 50, 450).getPlayer()
     // create an animation for the player
-    this.cursor = new Cursor(this, this.player, -200, true, false)
+    this.cursor = new Cursor(this, this.player, -250, true, true)
     // allow key inputs to control the player
     this.cursors = this.input.keyboard.createCursorKeys();
 
@@ -100,6 +79,14 @@ export default class Level2 extends Phaser.Scene {
     this.physics.add.overlap(this.player, this.orb, this.collectOrb, null, this);
     this.physics.add.overlap(this.player, this.finish, this.endGame, null, this);
     this.physics.add.collider(this.orb, this.platforms)
+
+
+    // Bombs
+    this.bombs = this.physics.add.group();
+
+    this.physics.add.collider(this.bombs, this.platforms);
+
+    this.physics.add.collider(this.player, this.bombs, this.hitBomb, null, this);
 
 
 
@@ -139,7 +126,13 @@ export default class Level2 extends Phaser.Scene {
   }
 
   changeLevel() {
-    this.scene.start('Level3');
+    this.scene.start('Level4');
+  }
+
+  hitBomb() {
+    this.firstStage = 0
+    this.thirdStage = 0
+    this.gameOver = true
   }
 
   checkGameOver() {
@@ -157,7 +150,7 @@ export default class Level2 extends Phaser.Scene {
     let cursor = this.cursor.getCursor()
 
     if(this.player.x >= 230) {
-      this.text = new Text(this, 0, 300, 250, "Ah da ist ja das arme Ding gefangen in der Zeitschleife. Laufe zum Ende dieser Zeitlinie und du schaffst diesen Teil der Zeitschleife zu entkommen. Ach ja ich hab da etwas gehört, um die Zeitschleife endgültig zu verlassen, musst du den Raum-Zeitkrümmer finden. Der ist glaub ich auf dem Mars ca. 600 Jahre in der Zukunft, ich glaub nicht, dass du so lange warten willst.")
+      this.text = new Text(this, 60, 360, 250, "Ah da ist ja das arme Ding gefangen in der Zeitschleife. Laufe zum Ende dieser Zeitlinie und du schaffst diesen Teil der Zeitschleife zu entkommen. Ach ja ich hab da etwas gehört, um die Zeitschleife endgültig zu verlassen, musst du den Raum-Zeitkrümmer finden. Der ist glaub ich auf dem Mars ca. 600 Jahre in der Zukunft, ich glaub nicht, dass du so lange warten willst.")
     }
 
     if(this.hasOrb === true && cursor.shift.isDown) {
@@ -170,6 +163,38 @@ export default class Level2 extends Phaser.Scene {
     // scroll the texture of the tilesprites proportionally to the camera scroll
     this.mountain.tilePositionX = this.myCam.scrollX * .3;
     this.mountain.tilePositionY = this.myCam.scrollY * .3;
+
+
+
+    if (this.player.x > 500 && this.player.x < 900 && this.firstStage === 0) {
+      this.firstStage = 1
+      let x = 510;
+      let step = 40;
+      for(let i = 0; i <= 10; i++) {
+        x = x + step
+        var bomb = this.bombs.create(x, 50, 'bomb');
+        bomb.setBounce(1);
+        bomb.setVelocity(0, 200);
+      }
+    }
+
+    if (this.player.x > 2000 && this.player.x < 3000 && this.thirdStage === 0) {
+      this.thirdStage = 1
+      let x = 2010;
+      let step = 100;
+      for(let i = 0; i <= 10; i++) {
+        let yVelocity = Math.floor(Math.random() * 401)
+        x = x + step
+        var bomb = this.bombs.create(x, 50, 'bomb');
+        bomb.setBounce(1);
+        if (i % 2 === 0) {
+          yVelocity = -Math.abs(yVelocity)
+        }
+        bomb.setVelocity(yVelocity, 100);
+      }
+    }
+
+
 
 
   }

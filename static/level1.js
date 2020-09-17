@@ -76,7 +76,7 @@ export default class Level1 extends Phaser.Scene {
     this.player = new Player(this, 'dude', 50, 300).getPlayer()
     this.npc = new NPC(this, 'dude', 450, 300).getNPC()
     // create an animation for the player
-    this.cursor = new Cursor(this, this.player)
+    this.cursor = new Cursor(this, this.player, -300, false, false)
 
     // allow key inputs to control the player
     this.cursors = this.input.keyboard.createCursorKeys();
@@ -93,7 +93,7 @@ export default class Level1 extends Phaser.Scene {
 
     // set workd bounds to allow camera to follow the player
     this.myCam = this.cameras.main;
-    this.myCam.setBounds(0, -600, 800 * 10, 600 * 2);
+    this.myCam.setBounds(0, -600, 800 * 4, 600 * 2);
 
     // making the camera follow the player
     this.myCam.startFollow(this.player);
@@ -142,8 +142,7 @@ export default class Level1 extends Phaser.Scene {
       this.text = new Text(this, 150, 200, 250, "Ah da ist ja das arme Ding gefangen in der Zeitschleife. Laufe zum Ende dieser Zeitlinie und du schaffst diesen Teil der Zeitschleife zu entkommen. Ach ja ich hab da etwas gehört, um die Zeitschleife endgültig zu verlassen, musst du den Raum-Zeitkrümmer finden. Der ist glaub ich auf dem Mars ca. 600 Jahre in der Zukunft, ich glaub nicht, dass du so lange warten willst.")
     }
 
-    if(this.hasOrb === true && cursor.left.isDown) {
-
+    if(this.hasOrb === true && cursor.shift.isDown) {
       this.player.x = this.player.x - 100
       this.hasOrb = false
     }

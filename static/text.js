@@ -18,7 +18,7 @@ export default class Text {
           color: '#333333',
           align: 'left',  // 'left'|'center'|'right'|'justify'
           backgroundColor: '#ffffff',
-          wordWrap: { width: width }
+          wordWrap: { width: width },
       },
       add: true
   })
