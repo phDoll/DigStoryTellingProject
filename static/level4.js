@@ -50,15 +50,20 @@ export default class Level4 extends Phaser.Scene {
     new Platform(this, 1, 1, 1650, 500)
     new Platform(this, 1, 1, 1750, 450)
     new Platform(this, 1, 20, 2900, 600)
-    new Platform(this, 120, 1900, 2900, 300)
+    new Platform(this, 30, 1, 1900, 350)
+    new Platform(this, 50, 1, 2200, 500)
+    new Platform(this, 1, 15, 2200, 500)
+    new Platform(this, 1, 11, 1900, 350)
+    new Platform(this, 24, 1, 1900, 250)
+    new Platform(this, 1, 32, 1900, 120)
+    new Platform(this, 24, 1, 1900, 120)
+    new Platform(this, 1, 14, 2140, 250)
     new Spikes(this, 5, 2820, 580)
-
-
-
+    new Spikes(this, 3, 1900, 240)
 
 
     // add player
-    this.player = new Player(this, 'dude', 1450, 450).getPlayer()
+    this.player = new Player(this, 'dude', 1450, 200).getPlayer()
     // create an animation for the player
     this.cursor = new Cursor(this, this.player, -200, true, true)
     // allow key inputs to control the player
@@ -67,7 +72,10 @@ export default class Level4 extends Phaser.Scene {
     this.finish = this.physics.add.sprite(3150, 300, 'finish')
     this.physics.add.collider(this.finish, this.platforms)
 
+
+    this.portal = this.physics.add.sprite(2100, 200, 'teleporter')
     this.physics.add.overlap(this.player, this.portal, this.teleport, null, this);
+    this.physics.add.collider(this.portal, this.platforms);
     this.physics.add.overlap(this.player, this.finish, this.endGame, null, this);
 
 

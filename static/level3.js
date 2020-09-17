@@ -76,7 +76,6 @@ export default class Level3 extends Phaser.Scene {
 
     this.physics.add.overlap(this.player, this.portal, this.teleport, null, this);
     this.physics.add.overlap(this.player, this.finish, this.endGame, null, this);
-    this.physics.add.collider(this.orb, this.platforms)
 
 
     // Bombs
@@ -110,7 +109,6 @@ export default class Level3 extends Phaser.Scene {
   }
 
   collectOrb() {
-    this.orb.disableBody(true, true)
     this.hasOrb = true
   }
 
