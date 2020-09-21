@@ -63,9 +63,9 @@ export default class Level4 extends Phaser.Scene {
 
 
     // add player
-    this.player = new Player(this, 'dude', 1450, 200).getPlayer()
+    this.player = new Player(this, 'dude', 50, 200).getPlayer()
     // create an animation for the player
-    this.cursor = new Cursor(this, this.player, -200, true, true)
+    this.cursor = new Cursor(this, this.player, -200, true, true, false)
     // allow key inputs to control the player
     this.cursors = this.input.keyboard.createCursorKeys();
 
@@ -121,6 +121,11 @@ export default class Level4 extends Phaser.Scene {
   hitSpike() {
     if (this.activeShild === false) {
       this.gameOver = true
+      this.hasOrb = false
+      this.canFire = true
+      this.ammo = 5
+      this.shild = true
+      this.activeShild = false;
     }
   }
 
@@ -139,18 +144,28 @@ export default class Level4 extends Phaser.Scene {
   }
 
   changeLevel() {
-    this.scene.start('Level4');
+    this.scene.start('Level5');
   }
 
   hitBomb() {
     if (this.activeShild === false) {
       this.gameOver = true
+      this.hasOrb = false
+      this.canFire = true
+      this.ammo = 5
+      this.shild = true
+      this.activeShild = false;
     }
   }
 
   hitEnemy() {
     if (this.activeShild === false) {
       this.gameOver = true
+      this.hasOrb = false
+      this.canFire = true
+      this.ammo = 5
+      this.shild = true
+      this.activeShild = false;
     }
   }
 
@@ -160,6 +175,11 @@ export default class Level4 extends Phaser.Scene {
       this.gameOver.setOrigin(0, 0);
       this.physics.pause();
       this.cursor.addRestart();
+      this.hasOrb = false
+      this.canFire = true
+      this.ammo = 5
+      this.shild = true
+      this.activeShild = false;
     }
   }
 
@@ -173,7 +193,6 @@ export default class Level4 extends Phaser.Scene {
       this.physics.add.collider(this.shoot, this.enemy.getEnemy(), this.shootEnemy, null, this);
       this.physics.add.collider(this.shoot, this.enemy1.getEnemy(), this.shootEnemy1, null, this);
       this.physics.add.collider(this.shoot, this.enemy2.getEnemy(), this.shootEnemy2, null, this);
-      this.physics.add.collider(this.shoot, this.enemy3.getEnemy(), this.shootEnemy3, null, this);
     }
     this.ammoText.setText('Munition: ' + this.ammo)
   }
@@ -191,11 +210,6 @@ export default class Level4 extends Phaser.Scene {
 
   shootEnemy2() {
     this.enemy2.getEnemy().destroy()
-    this.shoot.destroy()
-  }
-
-  shootEnemy3() {
-    this.enemy3.getEnemy().destroy()
     this.shoot.destroy()
   }
 

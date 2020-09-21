@@ -88,7 +88,7 @@ export default class Level2 extends Phaser.Scene {
     // add player
     this.player = new Player(this, 'dude', 2950, 350).getPlayer()
     // create an animation for the player
-    this.cursor = new Cursor(this, this.player, -200, true, false)
+    this.cursor = new Cursor(this, this.player, -200, true, false, false)
     // allow key inputs to control the player
     this.cursors = this.input.keyboard.createCursorKeys();
 

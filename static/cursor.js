@@ -1,11 +1,12 @@
 export default class Cursor {
-  constructor(object, player, velocity, doubleJump, sprint) {
+  constructor(object, player, velocity, doubleJump, sprint, moveLeft) {
     this.object = object
     this.cursor = object.input.keyboard.createCursorKeys();
     this.player = player
     this.jumpVelocity = velocity
     this.doubleJump = doubleJump
     this.sprint = sprint
+    this.moveLeft = moveLeft
   }
 
   getCursor() {
@@ -18,10 +19,10 @@ export default class Cursor {
         this.player.setVelocityX(160);
 
         this.player.anims.play('right', true);
-    // } else if (this.cursor.left.isDown) {
-    //   this.player.setVelocityX(-160);
+    } else if (this.cursor.left.isDown && this.moveLeft) {
+      this.player.setVelocityX(-160);
 
-    //   this.player.anims.play('left', true);
+      this.player.anims.play('left', true);
     } else if (this.cursor.space.isDown) {
       this.player.setVelocityX(460);
 
