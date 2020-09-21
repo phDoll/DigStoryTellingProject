@@ -105,6 +105,8 @@ export default class Level3 extends Phaser.Scene {
   }
 
   hitSpike() {
+    this.firstStage = 0
+    this.thirdStage = 0
     this.gameOver = true
   }
 

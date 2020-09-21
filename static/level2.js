@@ -27,9 +27,7 @@ export default class Level2 extends Phaser.Scene {
 
 
 
-    new Ground(this, 8, 0, 600)
-
-
+    new Platform(this, 12, 1, 0, 600)
     new Platform(this, 12, 1, 200, 550)
     new Platform(this, 12, 1, 300, 350)
     new Platform(this, 24, 1, 400, 100)
@@ -75,18 +73,13 @@ export default class Level2 extends Phaser.Scene {
     new Platform(this, 2, 64, 2950, 340)
     new Spikes(this, 1, 2940, 310)
 
-
-
-
-
     new Spikes(this, 1, 400, 320)
     new Spikes(this, 2, 890, 570)
     new Spikes(this, 2, 1050, 570)
     new Spikes(this, 12, 1200, 30)
 
-
     // add player
-    this.player = new Player(this, 'dude', 2950, 350).getPlayer()
+    this.player = new Player(this, 'dude', 50, 350).getPlayer()
     // create an animation for the player
     this.cursor = new Cursor(this, this.player, -200, true, false, false)
     // allow key inputs to control the player
@@ -131,7 +124,7 @@ export default class Level2 extends Phaser.Scene {
 
   teleport() {
     this.player.x = 3100
-    this.player.y = 550
+    this.player.y = 250
   }
 
   endGame() {
