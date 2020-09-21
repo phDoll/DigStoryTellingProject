@@ -81,13 +81,8 @@ export default class Level5 extends Phaser.Scene {
     new Platform(this, 12, 1, 2600, 150)
     new Platform(this, 12, 1, 2100, 600)
 
-
-
-
-
-
     // add player
-    this.player = new Player(this, 'dude', 1100, 500).getPlayer()
+    this.player = new Player(this, 'dude', 50, 500).getPlayer()
     // create an animation for the player
     this.cursor = new Cursor(this, this.player, -250, true, true, true)
     // allow key inputs to control the player
@@ -113,15 +108,11 @@ export default class Level5 extends Phaser.Scene {
 
 
     // enemy
-    // this.enemy = new Enemy(this, 'enemy', 400, 100)
     this.enemy1 = new Enemy(this, 'enemy', 400, 50)
     this.enemy2 = new Enemy(this, 'enemy', 100, -250)
     this.enemy3 = new Enemy(this, 'enemy', 1100, 310)
     this.enemy4 = new Enemy(this, 'enemy', 1100, 310)
     this.enemy5 = new Enemy(this, 'enemy', 1100, 310)
-    // this.enemy3 = new Enemy(this, 'enemy', 100, 500)
-    // this.physics.add.collider(this.player, this.enemy.getEnemy(), this.hitEnemy, null, this);
-    // this.physics.add.collider(this.enemy.getEnemy(), this.platforms);
     this.physics.add.collider(this.player, this.enemy1.getEnemy(), this.hitEnemy, null, this);
     this.physics.add.collider(this.enemy1.getEnemy(), this.platforms);
     this.physics.add.collider(this.player, this.enemy2.getEnemy(), this.hitEnemy, null, this);
@@ -156,8 +147,6 @@ export default class Level5 extends Phaser.Scene {
     this.physics.add.collider(this.player, this.spikes, this.hitSpike, null, this);
     this.npc = new NPC(this, 'dude', 250, 300).getNPC()
     this.physics.add.collider(this.npc, this.platforms);
-
-    // this.physics.add.collider(this.player, this.spikes, this.hitSpike, null, this);
 
     // set workd bounds to allow camera to follow the player
     this.myCam = this.cameras.main;
@@ -398,7 +387,6 @@ export default class Level5 extends Phaser.Scene {
     })
 
     if (this.player.x > 1100 && this.player.x < 1500 && this.activeBombs === 0) {
-      console.log("test")
       this.activeBombs = 1
       let x = 1100;
       let step = 120;
