@@ -72,6 +72,9 @@ export default class Level3 extends Phaser.Scene {
     this.finish = this.physics.add.sprite(3150, 900, 'finish')
     this.physics.add.collider(this.finish, this.platforms)
 
+    this.npc2 = new NPC(this, 'beaver', 3070, 1180).getNPC()
+    this.npc2.body.allowGravity = false
+
     this.start = this.physics.add.sprite(this.spawnPoint.x, this.spawnPoint.y - 20, 'start')
     this.start.body.allowGravity = false
 
@@ -152,6 +155,10 @@ export default class Level3 extends Phaser.Scene {
 
     if(this.player.x >= 230) {
       this.text = new Text(this, 200, 870, 300, 220, "Ah da ist ja das arme Ding gefangen in der Zeitschleife. Laufe zum Ende dieser Zeitlinie und du schaffst diesen Teil der Zeitschleife zu entkommen. Schon mal der richtige Planet nur leider die Falsche Zeit.", 0, 10)
+    }
+
+    if(this.player.x >= 3070) {
+      this.text = new Text(this, 2800,890, 300, 200, "Du hast es bis ans Ende dieser Zeitlinie geschafft. In der nächsten Zeitlinie wirst deinen Schild benutzen müssen. Benutze dein Schild mit der X Taste.", 200, 10)
     }
 
     if(this.player.y >= this.spawnPoint.y + 50) {

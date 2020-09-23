@@ -69,6 +69,8 @@ export default class Level1 extends Phaser.Scene {
 
     this.finish = this.physics.add.sprite(3150, 1100, 'finish')
     this.physics.add.collider(this.finish, this.platforms)
+    this.npc2 = new NPC(this, 'beaver', 3070, 1180).getNPC()
+    this.npc2.body.allowGravity = false
 
     this.start = this.physics.add.sprite(this.spawnPoint.x, this.spawnPoint.y - 20, 'start')
     this.start.body.allowGravity = false
@@ -151,6 +153,10 @@ export default class Level1 extends Phaser.Scene {
 
     if(this.player.x >= 430) {
       this.text = new Text(this, 400, 810, 300, 150, "Ah da ist ja das arme Ding gefangen in der Zeitschleife. Laufe zum Ende dieser Zeitlinie und du schaffst diesen Teil der Zeitschleife zu entkommen.", 0, 10)
+    }
+
+    if(this.player.x >= 3070) {
+      this.text = new Text(this, 2800,870, 300, 220, "Du hast es bis ans Ende dieser Zeitlinie geschafft. In der nächsten Zeitlinie wirst deinen Doppelsprung benutzen müssen. Drücke während des Springens die Sprungtaste.", 200, 10)
     }
 
     if(this.player.y >= this.spawnPoint.y +  50) {

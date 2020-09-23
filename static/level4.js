@@ -18,7 +18,7 @@ export default class Level4 extends Phaser.Scene {
     this.shild = true
     this.activeShild = false;
     this.spawnPoint = {
-      x: 50,
+      x: 3050,
       y: 1000
     }
   }
@@ -75,9 +75,11 @@ export default class Level4 extends Phaser.Scene {
     // allow key inputs to control the player
     this.cursors = this.input.keyboard.createCursorKeys();
 
-    this.finish = this.physics.add.sprite(3150, 300, 'finish')
+    this.finish = this.physics.add.sprite(3150, 900, 'finish')
     this.physics.add.collider(this.finish, this.platforms)
 
+    this.npc2 = new NPC(this, 'beaver', 3070, 1180).getNPC()
+    this.npc2.body.allowGravity = false
 
     this.portal = this.physics.add.sprite(2100, 800, 'teleporter')
     this.physics.add.overlap(this.player, this.portal, this.teleport, null, this);
@@ -243,6 +245,10 @@ export default class Level4 extends Phaser.Scene {
 
     if(this.player.x >= 230) {
       this.text = new Text(this, 50, 620, 300, 260, "Ah da ist ja das arme Ding gefangen in der Zeitschleife. Laufe zum Ende dieser Zeitlinie und du schaffst diesen Teil der Zeitschleife zu entkommen. Schon wieder die Erde. Aber zu dieser Zeit wurde der Zeitmanipulator auf der Erde entwickelt. Du musst ihn bekommen, damit du zu dem Raum/Zeit Krümmer gelangen kannst.", 130, 10)
+    }
+
+    if(this.player.x >= 3070) {
+      this.text = new Text(this, 2800,870, 300, 220, "Du hast es bis ans Ende dieser Zeitlinie geschafft. In der nächsten Zeitlinie wirst du zurück in der Zeit laufen können. Drücke dafür die linke Pfeiltaste.", 200, 10)
     }
 
     if(this.player.y >= this.spawnPoint.y + 50) {
