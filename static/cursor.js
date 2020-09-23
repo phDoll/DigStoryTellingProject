@@ -23,7 +23,7 @@ export default class Cursor {
       this.player.setVelocityX(-160);
 
       this.player.anims.play('left', true);
-    } else if (this.cursor.space.isDown) {
+    } else if (this.cursor.space.isDown && this.sprint) {
       this.player.setVelocityX(460);
 
       this.player.anims.play('right', true);

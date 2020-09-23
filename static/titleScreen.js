@@ -44,14 +44,14 @@ export default class titleScreen extends Phaser.Scene {
     // fixe it so it won't move when the camera moves.
     // Instead we are moving its texture on the update
     this.sky.setScrollFactor(0);
-    this.text = new Text(this, 150, 200, 400, 250, "Die Menschen haben sich auf die Planeten im Sonnensystem ausgebreitet. Bei einem Kampf um die Vorherrschaft in dem Sonnensystem wurde so viel Energie freigesetzt, das die Raumzeit verändert wurde. Ein Blitz traf Stellar und sie wurde Ohnmächtig. Nun ist sie gefangen in einer Raum-Zeitschleife. Um aus der Raum-Zeitschleife zu entkommen muss sie den Raum-Zeitkrümmer finden. Dieser wird im Jahr 3400 auf dem Planeten Merkur gebaut. Mit Hilfe dieses Raum-Zeitkrümmers kann sie aus der Raum-Zeitschleife entfliehen.", 0)
+    // this.text = new Text(this, 150, 200, 400, 250, "Die Menschen haben sich auf die Planeten im Sonnensystem ausgebreitet. Bei einem Kampf um die Vorherrschaft in dem Sonnensystem wurde so viel Energie freigesetzt, das die Raumzeit verändert wurde. Ein Blitz traf Stellar und sie wurde Ohnmächtig. Nun ist sie gefangen in einer Raum-Zeitschleife. Um aus der Raum-Zeitschleife zu entkommen muss sie den Raum-Zeitkrümmer finden. Dieser wird im Jahr 3400 auf dem Planeten Merkur gebaut. Mit Hilfe dieses Raum-Zeitkrümmers kann sie aus der Raum-Zeitschleife entfliehen.", 0)
     const startButton = this.add.text(300, 500, 'Start Game', { fill: '#0f0' });
     startButton.setInteractive();
     startButton.on('pointerdown', () => this.changeScene() );
   }
 
   changeScene() {
-    this.scene.start('Level5');
+    this.scene.start('Level1');
   }
 
 
