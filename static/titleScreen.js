@@ -38,20 +38,41 @@ export default class titleScreen extends Phaser.Scene {
   create() {
     this.gameOver = false
     // create an tiled sprite with the size of our game screen
-    this.sky = this.add.tileSprite(0, 0, game.config.width, game.config.height, "noon");
+    this.background = this.add.tileSprite(0, 0, game.config.width, game.config.height, "menu_background");
     // Set its pivot to the top left corner
-    this.sky.setOrigin(0, 0);
+    this.background.setOrigin(0, 0);
     // fixe it so it won't move when the camera moves.
     // Instead we are moving its texture on the update
-    this.sky.setScrollFactor(0);
+    this.background.setScrollFactor(0);
+
+    this.headline = this.add.text(80, 100, 'Stellars Time Quest', { fontFamily: 'ElemenzInitialsRegular', fontSize: 48, fill: '#289900', align: 'center', border: "1px solid red"});
+    this.walkRight = this.add.text(80, 250, 'Walk Right: →', { fontFamily: 'ElemenzInitialsRegular', fontSize: 28, fill: '#ffffff', align: 'center', border: "1px solid red"});
+    this.walkLeft = this.add.text(80, 300, 'Walk Left: ←', { fontFamily: 'ElemenzInitialsRegular', fontSize: 28, fill: '#ffffff', align: 'center', border: "1px solid red"});
+    this.jump = this.add.text(80, 350, 'Jump: ↑', { fontFamily: 'ElemenzInitialsRegular', fontSize: 28, fill: '#ffffff', align: 'center', border: "1px solid red"});
+    this.doubleJump = this.add.text(80, 400, 'Double Jump: ↑ ↑', { fontFamily: 'ElemenzInitialsRegular', fontSize: 28, fill: '#ffffff', align: 'center', border: "1px solid red"});
+    this.useOrb = this.add.text(450, 250, 'Use Orb: Shift', { fontFamily: 'ElemenzInitialsRegular', fontSize: 28, fill: '#ffffff', align: 'center', border: "1px solid red"});
+    this.sprint = this.add.text(450, 300, 'Sprint: Space', { fontFamily: 'ElemenzInitialsRegular', fontSize: 28, fill: '#ffffff', align: 'center', border: "1px solid red"});
+    this.shield = this.add.text(450, 350, 'Shild: X', { fontFamily: 'ElemenzInitialsRegular', fontSize: 28, fill: '#ffffff', align: 'center', border: "1px solid red"});
+    this.Weapon = this.add.text(450, 400, 'Weapon: Z', { fontFamily: 'ElemenzInitialsRegular', fontSize: 28, fill: '#ffffff', align: 'center', border: "1px solid red"});
+
     // this.text = new Text(this, 150, 200, 400, 250, "Die Menschen haben sich auf die Planeten im Sonnensystem ausgebreitet. Bei einem Kampf um die Vorherrschaft in dem Sonnensystem wurde so viel Energie freigesetzt, das die Raumzeit verändert wurde. Ein Blitz traf Stellar und sie wurde Ohnmächtig. Nun ist sie gefangen in einer Raum-Zeitschleife. Um aus der Raum-Zeitschleife zu entkommen muss sie den Raum-Zeitkrümmer finden. Dieser wird im Jahr 3400 auf dem Planeten Merkur gebaut. Mit Hilfe dieses Raum-Zeitkrümmers kann sie aus der Raum-Zeitschleife entfliehen.", 0)
-    const startButton = this.add.text(300, 500, 'Start Game', { fill: '#0f0' });
-    startButton.setInteractive();
-    startButton.on('pointerdown', () => this.changeScene() );
+    this.startButton = this.add.text(280, 500, 'Start Game', { fontFamily: 'ElemenzInitialsRegular', fontSize: 32, fill: '#ed3621', align: 'center', border: "1px solid red"});
+    this.startButton.setInteractive();
+    this.startButton.on('pointerdown', () => this.changeScene() );
+    this.startButton.on('pointerover', () => this.enterHoverState() );
+    this.startButton.on('pointerout', () => this.enterRestState() );
   }
 
   changeScene() {
-    this.scene.start('Level5');
+    this.scene.start('Level1');
+  }
+
+  enterHoverState() {
+    this.startButton.setStyle({fill: "#289900"})
+  }
+
+  enterRestState() {
+    this.startButton.setStyle({fill: "#ed3621"})
   }
 
 
