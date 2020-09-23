@@ -113,21 +113,22 @@ export default class Level5 extends Phaser.Scene {
 
 
     // enemy
-    this.enemy1 = new Enemy(this, 'enemy', 400, 650)
-    this.enemy2 = new Enemy(this, 'enemy', 100, 350)
-    this.enemy3 = new Enemy(this, 'enemy', 1100, 910)
-    this.enemy4 = new Enemy(this, 'enemy', 1100, 910)
-    this.enemy5 = new Enemy(this, 'enemy', 1100, 910)
+    this.enemy1 = new Enemy(this, 'enemy', 400, 665)
+    this.enemy2 = new Enemy(this, 'enemy', 100, 365)
+    this.enemy3 = new Enemy(this, 'enemy', 1100, 905)
+    this.enemy4 = new Enemy(this, 'enemy', 1100, 905)
+    this.enemy5 = new Enemy(this, 'enemy', 1100, 905)
     this.physics.add.collider(this.player, this.enemy1.getEnemy(), this.hitEnemy, null, this);
-    this.physics.add.collider(this.enemy1.getEnemy(), this.platforms);
+    this.enemy1.getEnemy().body.allowGravity = false
     this.physics.add.collider(this.player, this.enemy2.getEnemy(), this.hitEnemy, null, this);
-    this.physics.add.collider(this.enemy2.getEnemy(), this.platforms);
+    this.enemy2.getEnemy().body.allowGravity = false
     this.physics.add.collider(this.player, this.enemy3.getEnemy(), this.hitEnemy, null, this);
-    this.physics.add.collider(this.enemy3.getEnemy(), this.platforms);
+    this.enemy3.getEnemy().body.allowGravity = false
     this.physics.add.collider(this.player, this.enemy4.getEnemy(), this.hitEnemy, null, this);
-    this.physics.add.collider(this.enemy4.getEnemy(), this.platforms);
+    this.enemy4.getEnemy().body.allowGravity = false
     this.physics.add.collider(this.player, this.enemy5.getEnemy(), this.hitEnemy, null, this)
-    this.physics.add.collider(this.enemy5.getEnemy(), this.platforms);
+    this.enemy5.getEnemy().body.allowGravity = false
+
 
     // final enemys
     this.enemy6 = new Enemy(this, 'enemy', 3200, 1150)
@@ -153,6 +154,9 @@ export default class Level5 extends Phaser.Scene {
 
     // making the camera follow the player
     this.myCam.startFollow(this.player);
+
+    this.checkpoint = this.add.text(250, 100, '', { fontFamily: 'DogicaRegular', fontSize: 22, fill: '#ffffff', align: 'center'});
+    this.checkpoint.setScrollFactor(0)
   }
 
   hitSpike() {
@@ -243,10 +247,11 @@ export default class Level5 extends Phaser.Scene {
     if (this.canFire && this.ammo > 0) {
       this.canFire = false
       this.ammo = this.ammo - 1;
-      this.shoot = this.physics.add.sprite(this.player.x, this.player.y, 'shoot');
       if (this.cursor.getCursor().left.isDown) {
+        this.shoot = this.physics.add.sprite(this.player.x, this.player.y, 'shoot_left');
         this.shoot.body.velocity.x = -500
       } else {
+        this.shoot = this.physics.add.sprite(this.player.x, this.player.y, 'shoot');
         this.shoot.body.velocity.x = 500
       }
       this.shoot.body.allowGravity = false
@@ -341,25 +346,34 @@ export default class Level5 extends Phaser.Scene {
       this.start.destroy()
     }
 
-    if (this.player.x >= 940 && this.player.y >= 900) {
+    if (this.player.x >= 940 && this.player.y >= 900 && this.player.x <= 1040) {
+      this.checkpoint.setText("- Checkpoint -")
       this.spawnPoint = {
         x: 940,
         y: 1100
       }
+    } else {
+      this.checkpoint.setText('')
     }
 
-    if (this.player.x >= 940 && this.player.y >= 900) {
+    if (this.player.x >= 940 && this.player.y >= 900 && this.player.x <= 1040) {
+      this.checkpoint.setText("- Checkpoint -")
       this.spawnPoint = {
         x: 940,
         y: 1100
       }
+    } else {
+      this.checkpoint.setText('')
     }
 
-    if (this.player.x >= 2020) {
+    if (this.player.x >= 2020 && this.player.x <= 2120) {
+      this.checkpoint.setText("- Checkpoint -")
       this.spawnPoint = {
         x: 2020,
         y: 350
       }
+    } else {
+      this.checkpoint.setText('')
     }
 
     if (this.player.x >= 2500) {

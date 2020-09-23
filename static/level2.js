@@ -112,6 +112,8 @@ export default class Level2 extends Phaser.Scene {
     // making the camera follow the player
     this.myCam.startFollow(this.player);
 
+    this.checkpoint = this.add.text(250, 100, '', { fontFamily: 'DogicaRegular', fontSize: 22, fill: '#ffffff', align: 'center'});
+    this.checkpoint.setScrollFactor(0)
   }
 
   hitSpike() {
@@ -168,18 +170,24 @@ export default class Level2 extends Phaser.Scene {
       this.start.destroy()
     }
 
-    if (this.player.x >= 980) {
+    if (this.player.x >= 980 && this.player.x <= 1080) {
+      this.checkpoint.setText("- Checkpoint -")
       this.spawnPoint = {
         x: 980,
         y: 1100
       }
+    } else {
+      this.checkpoint.setText('')
     }
 
-    if (this.player.x >= 2250 && this.player.y >= 900) {
+    if (this.player.x >= 2250 && this.player.y >= 900 && this.player.x <= 2350) {
+      this.checkpoint.setText("- Checkpoint -")
       this.spawnPoint = {
         x: 2250,
         y: 880
       }
+    } else {
+      this.checkpoint.setText('')
     }
 
     if(this.hasOrb === true && cursor.shift.isDown) {

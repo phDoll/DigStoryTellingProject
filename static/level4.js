@@ -18,7 +18,7 @@ export default class Level4 extends Phaser.Scene {
     this.shild = true
     this.activeShild = false;
     this.spawnPoint = {
-      x: 3050,
+      x: 50,
       y: 1000
     }
   }
@@ -96,16 +96,16 @@ export default class Level4 extends Phaser.Scene {
 
 
     // enemy
-    this.enemy = new Enemy(this, 'enemy', 400, 750)
-    this.enemy1 = new Enemy(this, 'enemy', 700, 750)
-    this.enemy2 = new Enemy(this, 'enemy', 1800, 1100)
+    this.enemy = new Enemy(this, 'enemy', 400, 745)
+    this.enemy1 = new Enemy(this, 'enemy', 700, 745)
+    this.enemy2 = new Enemy(this, 'enemy', 1800, 1170)
     // this.enemy3 = new Enemy(this, 'enemy', 100, 500)
     this.physics.add.collider(this.player, this.enemy.getEnemy(), this.hitEnemy, null, this);
-    this.physics.add.collider(this.enemy.getEnemy(), this.platforms);
+    this.enemy.getEnemy().body.allowGravity = false
     this.physics.add.collider(this.player, this.enemy1.getEnemy(), this.hitEnemy, null, this);
-    this.physics.add.collider(this.enemy1.getEnemy(), this.platforms);
+    this.enemy1.getEnemy().body.allowGravity = false
     this.physics.add.collider(this.player, this.enemy2.getEnemy(), this.hitEnemy, null, this);
-    this.physics.add.collider(this.enemy2.getEnemy(), this.platforms);
+    this.enemy2.getEnemy().body.allowGravity = false
 
     this.physics.add.collider(this.player, this.platforms);
     this.physics.add.collider(this.player, this.spikes, this.hitSpike, null, this);
@@ -120,6 +120,9 @@ export default class Level4 extends Phaser.Scene {
 
     // making the camera follow the player
     this.myCam.startFollow(this.player);
+
+    this.checkpoint = this.add.text(250, 100, '', { fontFamily: 'DogicaRegular', fontSize: 22, fill: '#ffffff', align: 'center'});
+    this.checkpoint.setScrollFactor(0)
   }
 
   hitSpike() {
@@ -255,11 +258,14 @@ export default class Level4 extends Phaser.Scene {
       this.start.destroy()
     }
 
-    if (this.player.x >= 1450) {
+    if (this.player.x >= 1450 && this.player.x <= 1550) {
+      this.checkpoint.setText("- Checkpoint -")
       this.spawnPoint = {
         x: 1450,
         y: 1100
       }
+    } else {
+      this.checkpoint.setText('')
     }
 
     if(this.hasOrb === true && cursor.shift.isDown) {
