@@ -19,6 +19,7 @@ export default class Level5 extends Phaser.Scene {
     this.activeShild = false;
     this.count = 0;
     this.activeBombs = 0;
+    this.setPatroling = false;
   }
   create() {
     this.gameOver = false
@@ -92,13 +93,11 @@ export default class Level5 extends Phaser.Scene {
 
     this.ammoText = this.add.text(16, 16, 'Munition: ' + this.ammo, { fontSize: '22px', fill: '#000' });
     this.shildText = this.add.text(16, 60, 'Schild verfügbar', { fontSize: '22px', fill: '#000' });
-    this.finish = this.physics.add.sprite(3150, 900, 'finish')
-    this.physics.add.collider(this.finish, this.platforms)
 
     this.portal = this.physics.add.sprite(-20, 1100, 'teleporter')
     this.physics.add.overlap(this.player, this.portal, this.teleport, null, this);
     this.physics.add.collider(this.portal, this.platforms);
-    this.physics.add.overlap(this.player, this.finish, this.endGame, null, this);
+
 
 
     // Bombs
@@ -130,20 +129,14 @@ export default class Level5 extends Phaser.Scene {
     this.enemy6 = new Enemy(this, 'enemy', 3200, 1150)
     this.enemy7 = new Enemy(this, 'enemy', 3200, 700)
     this.enemy8 = new Enemy(this, 'enemy', 3200, 900)
-    this.enemy9 = new Enemy(this, 'enemy', 3200, 800)
-    this.enemy10 = new Enemy(this, 'enemy', 3200, 1050)
 
     this.enemy6.getEnemy().body.allowGravity = false
     this.enemy7.getEnemy().body.allowGravity = false
     this.enemy8.getEnemy().body.allowGravity = false
-    this.enemy9.getEnemy().body.allowGravity = false
-    this.enemy10.getEnemy().body.allowGravity = false
 
     this.physics.add.collider(this.player, this.enemy6.getEnemy(), this.hitEnemy, null, this);
     this.physics.add.collider(this.player, this.enemy7.getEnemy(), this.hitEnemy, null, this);
     this.physics.add.collider(this.player, this.enemy8.getEnemy(), this.hitEnemy, null, this);
-    this.physics.add.collider(this.player, this.enemy9.getEnemy(), this.hitEnemy, null, this);
-    this.physics.add.collider(this.player, this.enemy10.getEnemy(), this.hitEnemy, null, this);
 
     this.physics.add.collider(this.player, this.platforms);
     this.physics.add.collider(this.player, this.spikes, this.hitSpike, null, this);
@@ -168,6 +161,7 @@ export default class Level5 extends Phaser.Scene {
       this.activeShild = false;
       this.count = 0;
       this.activeBombs = 0;
+      this.setPatroling = false;
     }
   }
 
@@ -186,7 +180,7 @@ export default class Level5 extends Phaser.Scene {
   }
 
   changeLevel() {
-    this.scene.start('Level5');
+    this.scene.start('endScreen');
   }
 
   hitBomb() {
@@ -199,6 +193,7 @@ export default class Level5 extends Phaser.Scene {
       this.activeShild = false;
       this.count = 0;
       this.activeBombs = 0;
+      this.setPatroling = false;
     }
   }
 
@@ -212,6 +207,7 @@ export default class Level5 extends Phaser.Scene {
       this.activeShild = false;
       this.count = 0;
       this.activeBombs = 0;
+      this.setPatroling = false;
     }
   }
 
@@ -224,6 +220,7 @@ export default class Level5 extends Phaser.Scene {
       this.activeShild = false;
       this.count = 0;
       this.activeBombs = 0;
+      this.setPatroling = false;
       this.gameOver = this.add.tileSprite(0, 0, 3200, 1200, "black");
       this.gameOver.tilePositionX = this.myCam.scrollX * .3;
       this.gameOver.tilePositionY = this.myCam.scrollY;
@@ -257,9 +254,6 @@ export default class Level5 extends Phaser.Scene {
       this.physics.add.collider(this.shoot, this.enemy6.getEnemy(), this.shootEnemy6, null, this);
       this.physics.add.collider(this.shoot, this.enemy7.getEnemy(), this.shootEnemy7, null, this);
       this.physics.add.collider(this.shoot, this.enemy8.getEnemy(), this.shootEnemy8, null, this);
-      this.physics.add.collider(this.shoot, this.enemy9.getEnemy(), this.shootEnemy9, null, this);
-      this.physics.add.collider(this.shoot, this.enemy10.getEnemy(), this.shootEnemy10, null, this);
-
     }
     this.ammoText.setText('Munition: ' + this.ammo)
   }
@@ -307,23 +301,12 @@ export default class Level5 extends Phaser.Scene {
     this.count++
   }
 
-    shootEnemy8() {
-      this.enemy8.getEnemy().destroy()
-      this.shoot.destroy()
-      this.count++
-    }
-
-  shootEnemy9() {
-    this.enemy9.getEnemy().destroy()
+  shootEnemy8() {
+    this.enemy8.getEnemy().destroy()
     this.shoot.destroy()
     this.count++
   }
 
-  shootEnemy10() {
-    this.enemy10.getEnemy().destroy()
-    this.shoot.destroy()
-    this.count++
-  }
 
   activateShild() {
     if (this.shild) {
@@ -359,11 +342,13 @@ export default class Level5 extends Phaser.Scene {
       this.ammoText.setScrollFactor(0)
       this.shildText.setScrollFactor(0)
       this.ammo = 1000
-      this.enemy6.patroling(2000, 3100, 350)
-      this.enemy7.patroling(2000, 3100, 150)
-      this.enemy8.patroling(2000, 3100, 500)
-      this.enemy9.patroling(2000, 3100, 300)
-      this.enemy10.patroling(2000, 3100, 200)
+      this.setPatroling = true
+    }
+
+    if (this.setPatroling) {
+      this.enemy6.patroling(2100, 2900, 350)
+      this.enemy7.patroling(2100, 2900, 150)
+      this.enemy8.patroling(2100, 2900, 500)
     }
 
     if(this.hasOrb === true && cursor.shift.isDown) {
@@ -412,10 +397,11 @@ export default class Level5 extends Phaser.Scene {
       }
     }
 
-    if (this.count === 5) {
-      console.log("Gewonnen")
+    if (this.count === 3) {
+      this.finish = this.physics.add.sprite(2500, 970, 'finish')
+      this.finish.body.allowGravity = false
+      this.physics.add.overlap(this.player, this.finish, this.endGame, null, this);
     }
     this.checkGameOver()
-
   }
 }
