@@ -105,7 +105,7 @@ export default class Level3 extends Phaser.Scene {
 
   teleport() {
     this.player.x = 3100
-    this.player.y = 550
+    this.player.y = 1150
   }
 
   endGame() {
