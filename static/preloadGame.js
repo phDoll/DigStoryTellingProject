@@ -24,6 +24,7 @@ export default class preloadGame extends Phaser.Scene{
     this.load.image('shoot', 'static/assets/blue_ball.png');
     this.load.spritesheet('dude', 'static/assets/dude.png', { frameWidth: 32, frameHeight: 48 });
     this.load.spritesheet('beaver', 'static/assets/beaver.png', { frameWidth: 48, frameHeight: 48 });
+    this.load.spritesheet('beaver_standing', 'static/assets/beaver_standing.png', { frameWidth: 61, frameHeight: 43 });
   }
   create(){
     this.scene.start("PlayGame");

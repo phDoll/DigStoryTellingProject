@@ -1,5 +1,5 @@
 export default class Text {
-  constructor(object , x, y, width, height, quote, offset) {
+  constructor(object , x, y, width, height, quote, offset, fontSize) {
     var bubbleWidth = width;
     var bubbleHeight = height;
     var bubblePadding = 10;
@@ -39,7 +39,7 @@ export default class Text {
     this.bubble.lineBetween(point2X + offset, point2Y, point3X + offset, point3Y);
     this.bubble.lineBetween(point1X + offset, point1Y, point3X + offset, point3Y);
 
-    var content = object.add.text(0, 0, quote, { fontFamily: 'DogicaRegular', fontSize: 10, color: '#000000', align: 'center', wordWrap: { width: bubbleWidth - (bubblePadding * 2) } });
+    var content = object.add.text(0, 0, quote, { fontFamily: 'DogicaRegular', fontSize: fontSize, lineSpacing: 5, color: '#000000', align: 'center', wordWrap: { width: bubbleWidth - (bubblePadding * 2) } });
 
     var b = content.getBounds();
 

@@ -16,14 +16,12 @@ export default class Level1 extends Phaser.Scene {
   create() {
     this.gameOver = false
     // create an tiled sprite with the size of our game screen
-    this.sky = this.add.tileSprite(0, 0, 3200, 1200, "jupiter");
+    this.background = this.add.tileSprite(0, 0, 3200, 1200, "jupiter");
     // Set its pivot to the top left corner
-    this.sky.setOrigin(0,0);
+    this.background.setOrigin(0,0);
     // fixe it so it won't move when the camera moves.
     // Instead we are moving its texture on the update
-    this.sky.setScrollFactor(0);
-
-
+    this.background.setScrollFactor(0);
 
     this.platforms = this.physics.add.staticGroup();
 
@@ -145,7 +143,7 @@ export default class Level1 extends Phaser.Scene {
     let cursor = this.cursor.getCursor()
 
     if(this.player.x >= 430) {
-      this.text = new Text(this, 400, 700, 250, 250, "Ah da ist ja das arme Ding gefangen in der Zeitschleife. Laufe zum Ende dieser Zeitlinie und du schaffst diesen Teil der Zeitschleife zu entkommen. Ach ja ich hab da etwas gehört, um die Zeitschleife endgültig zu verlassen, musst du den Raum-Zeitkrümmer finden. Der ist glaub ich auf dem Mars ca. 600 Jahre in der Zukunft, ich glaub nicht, dass du so lange warten willst.", 0)
+      this.text = new Text(this, 400, 700, 250, 250, "Ah da ist ja das arme Ding gefangen in der Zeitschleife. Laufe zum Ende dieser Zeitlinie und du schaffst diesen Teil der Zeitschleife zu entkommen. Ach ja ich hab da etwas gehört, um die Zeitschleife endgültig zu verlassen, musst du den Raum-Zeitkrümmer finden. Der ist glaub ich auf dem Mars ca. 600 Jahre in der Zukunft, ich glaub nicht, dass du so lange warten willst.", 0, 10)
     }
 
 
@@ -156,7 +154,7 @@ export default class Level1 extends Phaser.Scene {
     this.checkGameOver()
 
     // scroll the texture of the tilesprites proportionally to the camera scroll
-    this.sky.tilePositionX = this.myCam.scrollX * .3;
-    this.sky.tilePositionY = this.myCam.scrollY;
+    this.background.tilePositionX = this.myCam.scrollX * .3;
+    this.background.tilePositionY = this.myCam.scrollY;
   }
 }
