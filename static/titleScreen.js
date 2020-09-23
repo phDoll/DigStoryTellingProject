@@ -51,7 +51,7 @@ export default class titleScreen extends Phaser.Scene {
   }
 
   changeScene() {
-    this.scene.start('Level1');
+    this.scene.start('Level2');
   }
 
 

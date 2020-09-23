@@ -16,7 +16,7 @@ export default class Level1 extends Phaser.Scene {
   create() {
     this.gameOver = false
     // create an tiled sprite with the size of our game screen
-    this.sky = this.add.tileSprite(0, -300, 2400, 1200, "jupiter");
+    this.sky = this.add.tileSprite(0, 0, 3200, 1200, "jupiter");
     // Set its pivot to the top left corner
     this.sky.setOrigin(0,0);
     // fixe it so it won't move when the camera moves.
@@ -98,12 +98,10 @@ export default class Level1 extends Phaser.Scene {
 
     // making the camera follow the player
     this.myCam.startFollow(this.player);
-    this.myCam.setFollowOffset(0, 150);
   }
 
 
   hitSpike() {
-    console.log("test")
     this.gameOver = true
   }
 
@@ -153,6 +151,6 @@ export default class Level1 extends Phaser.Scene {
 
     // scroll the texture of the tilesprites proportionally to the camera scroll
     this.sky.tilePositionX = this.myCam.scrollX * .3;
-    this.sky.tilePositionY = this.myCam.scrollY * .3;
+    this.sky.tilePositionY = this.myCam.scrollY;
   }
 }
