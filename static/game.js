@@ -54,7 +54,7 @@ import playGame from './titleScreen.js'
 //   mountainsBack = this.add.tileSprite(0, 0, 800, 600, "mountain")
 //   mountainsBack.setOrigin(0,0)
 //   mountainsBack.setScrollFactor(0)
-//   scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+//   scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '22px', fill: '#000' });
 //   console.log(this.scene.scene.cameras.main)
 //   camera = this.scene.scene.cameras.main
 //   player = new Player(this, 'dude').getPlayer()

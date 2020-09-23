@@ -28,8 +28,8 @@ export default class Level4 extends Phaser.Scene {
     // Instead we are moving its texture on the update
     this.background.setScrollFactor(0);
 
-    this.ammoText = this.add.text(16, 16, 'Munition: ' + this.ammo, { fontSize: '32px', fill: '#000' });
-    this.shildText = this.add.text(16, 60, 'Schild verfügbar', { fontSize: '32px', fill: '#000' });
+    this.ammoText = this.add.text(16, 16, 'Munition: ' + this.ammo, { fontSize: '22px', fill: '#000' });
+    this.shildText = this.add.text(16, 60, 'Schild verfügbar', { fontSize: '22px', fill: '#000' });
     this.platforms = this.physics.add.staticGroup();
     this.spikes = this.physics.add.staticGroup();
 
@@ -170,8 +170,8 @@ export default class Level4 extends Phaser.Scene {
       this.gameOver = this.add.tileSprite(0, 0, 3200, 1200, "black");
       this.gameOver.tilePositionX = this.myCam.scrollX * .3;
       this.gameOver.tilePositionY = this.myCam.scrollY;
-      this.gameOverText = this.add.text(100, 150, '- GAME OVER -', { fontSize: '72px', fill: '#ed3621', fontFamily: 'ElemenzInitialsRegular', align: 'center' });
-      this.gameOverContinueText = this.add.text(120, 350, '- PRESS SPACE TO RESTART -', { fontSize: '32px', fill: '#299900', fontFamily: 'ElemenzInitialsRegular', align: 'center' });
+      this.gameOverText = this.add.text(100, 150, '- GAME OVER -', { fontSize: '48px', fill: '#ed3621', fontFamily: 'DogicaRegular', align: 'center' });
+      this.gameOverContinueText = this.add.text(120, 350, '- PRESS SPACE TO RESTART -', { fontSize: '22px', fill: '#299900', fontFamily: 'DogicaRegular', align: 'center' });
       this.gameOverText.setScrollFactor(0)
       this.gameOverContinueText.setScrollFactor(0)
       this.gameOver.setOrigin(0, 0);
