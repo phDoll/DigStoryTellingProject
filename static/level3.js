@@ -59,7 +59,7 @@ export default class Level3 extends Phaser.Scene {
     new Spikes(this, 200, 0, 0, 3, 'spike_turned')
 
     // add player
-    this.player = new Player(this, 'dude', 50, 1150).getPlayer()
+    this.player = new Player(this, 'dude', 50, 1000).getPlayer()
     // create an animation for the player
     this.cursor = new Cursor(this, this.player, -250, true, true, false)
     // allow key inputs to control the player
@@ -67,6 +67,10 @@ export default class Level3 extends Phaser.Scene {
 
     this.finish = this.physics.add.sprite(3150, 900, 'finish')
     this.physics.add.collider(this.finish, this.platforms)
+
+    this.start = this.physics.add.sprite(50, 980, 'start')
+    this.start.body.allowGravity = false
+
 
     this.physics.add.overlap(this.player, this.portal, this.teleport, null, this);
     this.physics.add.overlap(this.player, this.finish, this.endGame, null, this);
@@ -143,7 +147,11 @@ export default class Level3 extends Phaser.Scene {
     let cursor = this.cursor.getCursor()
 
     if(this.player.x >= 230) {
-      this.text = new Text(this, 200, 850, 250, 250, "Ah da ist ja das arme Ding gefangen in der Zeitschleife. Laufe zum Ende dieser Zeitlinie und du schaffst diesen Teil der Zeitschleife zu entkommen. Ach ja ich hab da etwas gehört, um die Zeitschleife endgültig zu verlassen, musst du den Raum-Zeitkrümmer finden. Der ist glaub ich auf dem Mars ca. 600 Jahre in der Zukunft, ich glaub nicht, dass du so lange warten willst.", 0, 10)
+      this.text = new Text(this, 200, 780, 300, 300, "Ah da ist ja das arme Ding gefangen in der Zeitschleife. Laufe zum Ende dieser Zeitlinie und du schaffst diesen Teil der Zeitschleife zu entkommen. Ach ja ich hab da etwas gehört, um die Zeitschleife endgültig zu verlassen, musst du den Raum-Zeitkrümmer finden. Der ist glaub ich auf dem Mars ca. 600 Jahre in der Zukunft, ich glaub nicht, dass du so lange warten willst.", 0, 10)
+    }
+
+    if(this.player.y >= 1150) {
+      this.start.destroy()
     }
 
     if(this.hasOrb === true && cursor.shift.isDown) {

@@ -61,9 +61,11 @@ export default class Level4 extends Phaser.Scene {
     new Spikes(this, 5, 0, 2820, 597, 'spike')
     new Spikes(this, 3, 0, 1900, 247, 'spike')
 
+    this.start = this.physics.add.sprite(50, 980, 'start')
+    this.start.body.allowGravity = false
 
     // add player
-    this.player = new Player(this, 'dude', 50, 1100).getPlayer()
+    this.player = new Player(this, 'dude', 50, 1000).getPlayer()
     // create an animation for the player
     this.cursor = new Cursor(this, this.player, -200, true, true, false)
     // allow key inputs to control the player
@@ -236,7 +238,11 @@ export default class Level4 extends Phaser.Scene {
     }
 
     if(this.player.x >= 230) {
-      this.text = new Text(this, 100, 630, 250, 250, "Ah da ist ja das arme Ding gefangen in der Zeitschleife. Laufe zum Ende dieser Zeitlinie und du schaffst diesen Teil der Zeitschleife zu entkommen. Ach ja ich hab da etwas gehört, um die Zeitschleife endgültig zu verlassen, musst du den Raum-Zeitkrümmer finden. Der ist glaub ich auf dem Mars ca. 600 Jahre in der Zukunft, ich glaub nicht, dass du so lange warten willst.", 100)
+      this.text = new Text(this, 50, 600, 300, 300, "Ah da ist ja das arme Ding gefangen in der Zeitschleife. Laufe zum Ende dieser Zeitlinie und du schaffst diesen Teil der Zeitschleife zu entkommen. Ach ja ich hab da etwas gehört, um die Zeitschleife endgültig zu verlassen, musst du den Raum-Zeitkrümmer finden. Der ist glaub ich auf dem Mars ca. 600 Jahre in der Zukunft, ich glaub nicht, dass du so lange warten willst.", 130, 10)
+    }
+
+    if(this.player.y >= 1150) {
+      this.start.destroy()
     }
 
     if(this.hasOrb === true && cursor.shift.isDown) {

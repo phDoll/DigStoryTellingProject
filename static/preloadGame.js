@@ -21,6 +21,7 @@ export default class preloadGame extends Phaser.Scene{
     this.load.image("teleporter", "static/assets/portal.png");
     this.load.image("enemy", "static/assets/clown.png");
     this.load.image("finish", "static/assets/portal.png");
+    this.load.image("start", "static/assets/portal_turned.png");
     this.load.image('shoot', 'static/assets/blue_ball.png');
     this.load.spritesheet('dude', 'static/assets/dude.png', { frameWidth: 32, frameHeight: 48 });
     this.load.spritesheet('beaver', 'static/assets/beaver.png', { frameWidth: 48, frameHeight: 48 });

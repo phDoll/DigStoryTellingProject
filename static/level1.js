@@ -66,6 +66,9 @@ export default class Level1 extends Phaser.Scene {
     this.finish = this.physics.add.sprite(3150, 1100, 'finish')
     this.physics.add.collider(this.finish, this.platforms)
 
+    this.start = this.physics.add.sprite(50, 980, 'start')
+    this.start.body.allowGravity = false
+
     this.portal = this.physics.add.sprite(1900, 820, 'teleporter')
     this.portal.body.allowGravity = false
 
@@ -73,7 +76,7 @@ export default class Level1 extends Phaser.Scene {
     this.physics.add.collider(this.orb, this.platforms)
 
     // add player
-    this.player = new Player(this, 'dude', 50, 1150).getPlayer()
+    this.player = new Player(this, 'dude', 50, 1000).getPlayer()
     this.npc = new NPC(this, 'beaver', 450, 1030).getNPC()
     this.npc.body.allowGravity = false
     // create an animation for the player
@@ -143,7 +146,11 @@ export default class Level1 extends Phaser.Scene {
     let cursor = this.cursor.getCursor()
 
     if(this.player.x >= 430) {
-      this.text = new Text(this, 400, 700, 250, 250, "Ah da ist ja das arme Ding gefangen in der Zeitschleife. Laufe zum Ende dieser Zeitlinie und du schaffst diesen Teil der Zeitschleife zu entkommen. Ach ja ich hab da etwas gehört, um die Zeitschleife endgültig zu verlassen, musst du den Raum-Zeitkrümmer finden. Der ist glaub ich auf dem Mars ca. 600 Jahre in der Zukunft, ich glaub nicht, dass du so lange warten willst.", 0, 10)
+      this.text = new Text(this, 400, 630, 300, 300, "Ah da ist ja das arme Ding gefangen in der Zeitschleife. Laufe zum Ende dieser Zeitlinie und du schaffst diesen Teil der Zeitschleife zu entkommen. Ach ja ich hab da etwas gehört, um die Zeitschleife endgültig zu verlassen, musst du den Raum-Zeitkrümmer finden. Der ist glaub ich auf dem Mars ca. 600 Jahre in der Zukunft, ich glaub nicht, dass du so lange warten willst.", 0, 10)
+    }
+
+    if(this.player.y >= 1150) {
+      this.start.destroy()
     }
 
 
