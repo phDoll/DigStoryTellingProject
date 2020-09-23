@@ -32,8 +32,8 @@ export default class Level4 extends Phaser.Scene {
     // Instead we are moving its texture on the update
     this.background.setScrollFactor(0);
 
-    this.ammoText = this.add.text(16, 16, 'Munition: ' + this.ammo, { fontSize: '22px', fill: '#000' });
-    this.shildText = this.add.text(16, 60, 'Schild verfügbar', { fontSize: '22px', fill: '#000' });
+    this.ammoText = this.add.text(16, 16, 'Munition: ' + this.ammo, { fontFamily: 'DogicaRegular', fontSize: 22, fill: '#ffffff' });
+    this.shildText = this.add.text(16, 60, 'Schild verfügbar', { fontFamily: 'DogicaRegular', fontSize: 22, fill: '#ffffff'});
     this.platforms = this.physics.add.staticGroup();
     this.spikes = this.physics.add.staticGroup();
 
@@ -142,7 +142,7 @@ export default class Level4 extends Phaser.Scene {
   }
 
   teleport() {
-    this.player.x = 3100
+    this.player.x = 3050
     this.player.y = 1150
   }
 

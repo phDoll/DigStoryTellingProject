@@ -95,8 +95,8 @@ export default class Level5 extends Phaser.Scene {
     // allow key inputs to control the player
     this.cursors = this.input.keyboard.createCursorKeys();
 
-    this.ammoText = this.add.text(16, 16, 'Munition: ' + this.ammo, { fontSize: '22px', fill: '#000' });
-    this.shildText = this.add.text(16, 60, 'Schild verfügbar', { fontSize: '22px', fill: '#000' });
+    this.ammoText = this.add.text(16, 16, 'Munition: ' + this.ammo, { fontFamily: 'DogicaRegular', fontSize: 22, fill: '#ffffff' });
+    this.shildText = this.add.text(16, 60, 'Schild verfügbar', { fontFamily: 'DogicaRegular', fontSize: 22, fill: '#ffffff' });
 
     this.portal = this.physics.add.sprite(-20, 1100, 'teleporter')
     this.physics.add.overlap(this.player, this.portal, this.teleport, null, this);
@@ -352,21 +352,13 @@ export default class Level5 extends Phaser.Scene {
         x: 940,
         y: 1100
       }
-    } else {
-      this.checkpoint.setText('')
-    }
-
-    if (this.player.x >= 940 && this.player.y >= 900 && this.player.x <= 1040) {
+    } else if(this.player.x >= 940 && this.player.y >= 900 && this.player.x <= 1040) {
       this.checkpoint.setText("- Checkpoint -")
       this.spawnPoint = {
         x: 940,
         y: 1100
       }
-    } else {
-      this.checkpoint.setText('')
-    }
-
-    if (this.player.x >= 2020 && this.player.x <= 2120) {
+    } else if (this.player.x >= 2020 && this.player.x <= 2120) {
       this.checkpoint.setText("- Checkpoint -")
       this.spawnPoint = {
         x: 2020,

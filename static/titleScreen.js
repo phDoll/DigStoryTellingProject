@@ -25,7 +25,9 @@ window.onload = function(){
       arcade: {
           gravity: {
             y: 400
-          }
+          },
+          fps: 30
+
       }
     },
     scene: [preloadGame, titleScreen, storyScreen, Level1, Level2, Level3, Level4, Level5, endScreen]

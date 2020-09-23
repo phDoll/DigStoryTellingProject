@@ -122,7 +122,7 @@ export default class Level1 extends Phaser.Scene {
   }
 
   teleport() {
-    this.player.x = 3100
+    this.player.x = 3050
     this.player.y = 1150
   }
 
@@ -173,12 +173,7 @@ export default class Level1 extends Phaser.Scene {
         x: 1450,
         y: 1100
       }
-    } else {
-      this.checkpoint.setText('')
-    }
-
-
-    if (this.player.x >= 2340 && this.player.x <= 2440) {
+    } else if (this.player.x >= 2340 && this.player.x <= 2440) {
       this.checkpoint.setText("- Checkpoint -")
       this.spawnPoint = {
         x: 2340,
@@ -187,7 +182,6 @@ export default class Level1 extends Phaser.Scene {
     } else {
       this.checkpoint.setText('')
     }
-
 
     if(this.hasOrb === true && cursor.shift.isDown) {
       this.player.x = this.player.x - 100

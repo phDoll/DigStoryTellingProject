@@ -173,17 +173,13 @@ export default class Level3 extends Phaser.Scene {
         x: 1050,
         y: 1100
       }
-    } else {
-      this.checkpoint.setText('')
-    }
-
-    if (this.player.x >= 2050 && this.player.x <= 2150) {
+    } else if (this.player.x >= 2050 && this.player.x <= 2150) {
       this.checkpoint.setText("- Checkpoint -")
       this.spawnPoint = {
         x: 2050,
         y: 1100
       }
-    } else {
+    }else {
       this.checkpoint.setText('')
     }
 
