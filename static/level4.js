@@ -167,7 +167,13 @@ export default class Level4 extends Phaser.Scene {
 
   checkGameOver() {
     if (this.player.y > 1220 || this.gameOver) {
-      this.gameOver = this.add.tileSprite( Math.floor(this.myCam.scrollX), 0, 800, 600, "noon");
+      this.gameOver = this.add.tileSprite(0, 0, 3200, 1200, "black");
+      this.gameOver.tilePositionX = this.myCam.scrollX * .3;
+      this.gameOver.tilePositionY = this.myCam.scrollY;
+      this.gameOverText = this.add.text(100, 150, '- GAME OVER -', { fontSize: '72px', fill: '#ed3621', fontFamily: 'ElemenzInitialsRegular', align: 'center' });
+      this.gameOverContinueText = this.add.text(120, 350, '- PRESS SPACE TO RESTART -', { fontSize: '32px', fill: '#299900', fontFamily: 'ElemenzInitialsRegular', align: 'center' });
+      this.gameOverText.setScrollFactor(0)
+      this.gameOverContinueText.setScrollFactor(0)
       this.gameOver.setOrigin(0, 0);
       this.physics.pause();
       this.cursor.addRestart();

@@ -81,7 +81,7 @@ export default class Level5 extends Phaser.Scene {
     new Platform(this, 12, 1, 2100, 600, 'platform_level_2')
 
     // add player
-    this.player = new Player(this, 'dude', 1200, 300).getPlayer()
+    this.player = new Player(this, 'dude', 50, 1100).getPlayer()
     // create an animation for the player
     this.cursor = new Cursor(this, this.player, -250, true, true, true)
     // allow key inputs to control the player
@@ -221,8 +221,15 @@ export default class Level5 extends Phaser.Scene {
       this.activeShild = false;
       this.count = 0;
       this.activeBombs = 0;
-      this.gameOver = this.add.tileSprite( Math.floor(this.myCam.scrollX), 0, 800, 600, "noon");
+      this.gameOver = this.add.tileSprite(0, 0, 3200, 1200, "black");
+      this.gameOver.tilePositionX = this.myCam.scrollX * .3;
+      this.gameOver.tilePositionY = this.myCam.scrollY;
+      this.gameOverText = this.add.text(100, 150, '- GAME OVER -', { fontSize: '72px', fill: '#ed3621', fontFamily: 'ElemenzInitialsRegular', align: 'center' });
+      this.gameOverContinueText = this.add.text(120, 350, '- PRESS SPACE TO RESTART -', { fontSize: '32px', fill: '#299900', fontFamily: 'ElemenzInitialsRegular', align: 'center' });
+      this.gameOverText.setScrollFactor(0)
+      this.gameOverContinueText.setScrollFactor(0)
       this.gameOver.setOrigin(0, 0);
+
       this.physics.pause();
       this.cursor.addRestart();
     }
@@ -332,11 +339,9 @@ export default class Level5 extends Phaser.Scene {
     let cursor = this.cursor.getCursor()
     this.enemy1.patroling(400, 600, 300)
     this.enemy2.patroling(100, 340, 350)
-    this.checkGameOver()
     if (this.canFire === false ) {
       this.canFire = true
     }
-
 
     if(this.player.x >= 230) {
       this.text = new Text(this, 100, 630, 250, 250, "Ah da ist ja das arme Ding gefangen in der Zeitschleife. Laufe zum Ende dieser Zeitlinie und du schaffst diesen Teil der Zeitschleife zu entkommen. Ach ja ich hab da etwas gehört, um die Zeitschleife endgültig zu verlassen, musst du den Raum-Zeitkrümmer finden. Der ist glaub ich auf dem Mars ca. 600 Jahre in der Zukunft, ich glaub nicht, dass du so lange warten willst.", 100)
@@ -403,6 +408,7 @@ export default class Level5 extends Phaser.Scene {
     if (this.count === 5) {
       console.log("Gewonnen")
     }
+    this.checkGameOver()
 
   }
 }
