@@ -23,66 +23,65 @@ export default class Level5 extends Phaser.Scene {
   create() {
     this.gameOver = false
     // create an tiled sprite with the size of our game screen
-    this.mountain = this.add.tileSprite(0, 0, 800, 600, "sky");
+    this.background = this.add.tileSprite(0, 0, 3200, 1200, "jupiter");
     // Set its pivot to the top left corner
-    this.mountain.setOrigin(0, 0);
+    this.background.setOrigin(0, 0);
     // fixe it so it won't move when the camera moves.
     // Instead we are moving its texture on the update
-    this.mountain.setScrollFactor(0);
+    this.background.setScrollFactor(0);
 
     this.platforms = this.physics.add.staticGroup();
     this.spikes = this.physics.add.staticGroup();
 
 
-    new Platform(this, 24, 1, 0, 600)
-    new Platform(this, 12, 1, 200, 400)
-    new Platform(this, 24, 1, 400, 100)
-    new Platform(this, 1, 40, 640, 100)
-    new Platform(this, 24, 1, 640, -300)
-    new Platform(this, 1, 90, 870, 600)
-    new Platform(this, 1, 120, 1050, 350)
-    new Platform(this, 24, 1, 100, -200)
-    new Platform(this, 4, 1, 1000, -450)
-    new Platform(this, 4, 1, 880, -280)
-    new Platform(this, 10, 1, 880, 120)
-    new Platform(this, 7, 1, 990, -150)
-    new Platform(this, 100, 1, 880, 600)
+    new Platform(this, 24, 1, 0, 600, 'platform_level_2')
+    new Platform(this, 12, 1, 200, 400, 'platform_level_2')
+    new Platform(this, 24, 1, 400, 100, 'platform_level_2')
+    new Platform(this, 0, 40, 640, 100, 'platform_level_2')
+    new Platform(this, 24, 1, 640, -300, 'platform_level_2')
+    new Platform(this, 0, 90, 870, 600, 'platform_level_2')
+    new Platform(this, 0, 120, 1050, 350, 'platform_level_2')
+    new Platform(this, 24, 1, 100, -200, 'platform_level_2')
+    new Platform(this, 4, 1, 1000, -450, 'platform_level_2')
+    new Platform(this, 4, 1, 880, -280, 'platform_level_2')
+    new Platform(this, 10, 1, 880, 120, 'platform_level_2')
+    new Platform(this, 7, 1, 990, -150, 'platform_level_2')
+    new Platform(this, 100, 1, 880, 600, 'platform_level_2')
 
 
     // Labyrinth
-    new Platform(this, 1, 12, 1050, 600)
-    new Platform(this, 73, 1, 1050, 350)
-    new Platform(this, 1, 80, 1880, 600)
-    new Platform(this, 68, 1, 1200, 100)
-    new Platform(this, 69, 1, 1200, -200)
-    new Platform(this, 1, 30, 1200, 100)
-    new Platform(this, 4, 1, 1160, 60)
-    new Platform(this, 73, 1, 1050, -400)
+    new Platform(this, 0, 12, 1050, 600, 'platform_level_2')
+    new Platform(this, 73, 1, 1050, 350, 'platform_level_2')
+    new Platform(this, 0, 80, 1880, 600, 'platform_level_2')
+    new Platform(this, 68, 1, 1200, 100, 'platform_level_2')
+    new Platform(this, 69, 1, 1200, -200, 'platform_level_2')
+    new Platform(this, 0, 30, 1200, 100, 'platform_level_2')
+    new Platform(this, 4, 1, 1160, 60, 'platform_level_2')
+    new Platform(this, 73, 1, 1050, -350, 'platform_level_2')
 
 
 
     // Spikes
-    new Spikes(this, 1, 640, -330)
-    new Spikes(this, 1, 900, -300)
-    new Spikes(this, 2, 1000, -180)
-    new Spikes(this, 3, 920, 100)
-    new Spikes(this, 2, 1000, 580)
-    new Spikes(this, 2, 1000, 580)
-    new Spikes(this, 8, 1250, -220)
-    new Spikes(this, 8, 1450, -380)
-    new Spikes(this, 4, 1650, -380)
-    new Spikes(this, 4, 1550, -220)
-    new Spikes(this, 4, 1700, -220)
+    new Spikes(this, 1, 0, 640, -303, 'spike')
+    new Spikes(this, 2, 0, 890, -283, 'spike')
+    new Spikes(this, 4, 0, 990, -153, 'spike')
+    new Spikes(this, 7, 0, 890, 117, 'spike')
+    new Spikes(this, 2, 0, 1000, 597, 'spike')
+    new Spikes(this, 8, 0, 1250, -203, 'spike')
+    new Spikes(this, 8, 0, 1450, -347, 'spike_turned')
+    new Spikes(this, 4, 0, 1650, -347, 'spike_turned')
+    new Spikes(this, 4, 0, 1550, -203, 'spike')
+    new Spikes(this, 4, 0, 1700, -203, 'spike')
 
     // Final
-    new Platform(this, 6, 1, 1900, -100)
-    new Platform(this, 24, 1, 2100, 200)
-    new Platform(this, 24, 1, 2400, 400)
-    new Platform(this, 12, 1, 2600, 150)
-    new Platform(this, 12, 1, 2100, 600)
+    new Platform(this, 6, 1, 2000, -100, 'platform_level_2')
+    new Platform(this, 24, 1, 2100, 200, 'platform_level_2')
+    new Platform(this, 24, 1, 2400, 400, 'platform_level_2')
+    new Platform(this, 12, 1, 2600, 150, 'platform_level_2')
+    new Platform(this, 12, 1, 2100, 600, 'platform_level_2')
 
     // add player
-    this.player = new Player(this, 'dude', 50, 500).getPlayer()
+    this.player = new Player(this, 'dude', 1200, 300).getPlayer()
     // create an animation for the player
     this.cursor = new Cursor(this, this.player, -250, true, true, true)
     // allow key inputs to control the player
@@ -90,10 +89,10 @@ export default class Level5 extends Phaser.Scene {
 
     this.ammoText = this.add.text(16, 16, 'Munition: ' + this.ammo, { fontSize: '32px', fill: '#000' });
     this.shildText = this.add.text(16, 60, 'Schild verfügbar', { fontSize: '32px', fill: '#000' });
-    this.finish = this.physics.add.sprite(3150, 300, 'finish')
+    this.finish = this.physics.add.sprite(3150, 900, 'finish')
     this.physics.add.collider(this.finish, this.platforms)
 
-    this.portal = this.physics.add.sprite(-20, 400, 'teleporter')
+    this.portal = this.physics.add.sprite(-20, 1100, 'teleporter')
     this.physics.add.overlap(this.player, this.portal, this.teleport, null, this);
     this.physics.add.collider(this.portal, this.platforms);
     this.physics.add.overlap(this.player, this.finish, this.endGame, null, this);
@@ -108,11 +107,11 @@ export default class Level5 extends Phaser.Scene {
 
 
     // enemy
-    this.enemy1 = new Enemy(this, 'enemy', 400, 50)
-    this.enemy2 = new Enemy(this, 'enemy', 100, -250)
-    this.enemy3 = new Enemy(this, 'enemy', 1100, 310)
-    this.enemy4 = new Enemy(this, 'enemy', 1100, 310)
-    this.enemy5 = new Enemy(this, 'enemy', 1100, 310)
+    this.enemy1 = new Enemy(this, 'enemy', 400, 650)
+    this.enemy2 = new Enemy(this, 'enemy', 100, 350)
+    this.enemy3 = new Enemy(this, 'enemy', 1100, 910)
+    this.enemy4 = new Enemy(this, 'enemy', 1100, 910)
+    this.enemy5 = new Enemy(this, 'enemy', 1100, 910)
     this.physics.add.collider(this.player, this.enemy1.getEnemy(), this.hitEnemy, null, this);
     this.physics.add.collider(this.enemy1.getEnemy(), this.platforms);
     this.physics.add.collider(this.player, this.enemy2.getEnemy(), this.hitEnemy, null, this);
@@ -125,11 +124,11 @@ export default class Level5 extends Phaser.Scene {
     this.physics.add.collider(this.enemy5.getEnemy(), this.platforms);
 
     // final enemys
-    this.enemy6 = new Enemy(this, 'enemy', 3200, 550)
-    this.enemy7 = new Enemy(this, 'enemy', 3200, 100)
-    this.enemy8 = new Enemy(this, 'enemy', 3200, 300)
-    this.enemy9 = new Enemy(this, 'enemy', 3200, 200)
-    this.enemy10 = new Enemy(this, 'enemy', 3200, 450)
+    this.enemy6 = new Enemy(this, 'enemy', 3200, 1150)
+    this.enemy7 = new Enemy(this, 'enemy', 3200, 700)
+    this.enemy8 = new Enemy(this, 'enemy', 3200, 900)
+    this.enemy9 = new Enemy(this, 'enemy', 3200, 800)
+    this.enemy10 = new Enemy(this, 'enemy', 3200, 1050)
 
     this.enemy6.getEnemy().body.allowGravity = false
     this.enemy7.getEnemy().body.allowGravity = false
@@ -145,12 +144,12 @@ export default class Level5 extends Phaser.Scene {
 
     this.physics.add.collider(this.player, this.platforms);
     this.physics.add.collider(this.player, this.spikes, this.hitSpike, null, this);
-    this.npc = new NPC(this, 'dude', 250, 300).getNPC()
-    this.physics.add.collider(this.npc, this.platforms);
+    this.npc = new NPC(this, 'beaver', 250, 980).getNPC()
+    this.npc.body.allowGravity = false
 
     // set workd bounds to allow camera to follow the player
     this.myCam = this.cameras.main;
-    this.myCam.setBounds(0, -600, 800 * 4, 600 * 2);
+    this.myCam.setBounds(0, 0, 800 * 4, 600 * 2);
 
     // making the camera follow the player
     this.myCam.startFollow(this.player);
@@ -176,7 +175,7 @@ export default class Level5 extends Phaser.Scene {
 
   teleport() {
     this.player.x = 2400
-    this.player.y = 350
+    this.player.y = 950
   }
 
   endGame() {
@@ -214,7 +213,7 @@ export default class Level5 extends Phaser.Scene {
   }
 
   checkGameOver() {
-    if (this.player.y > 620 || this.gameOver) {
+    if (this.player.y > 1220 || this.gameOver) {
       this.hasOrb = false
       this.canFire = true
       this.ammo = 5
@@ -340,7 +339,7 @@ export default class Level5 extends Phaser.Scene {
 
 
     if(this.player.x >= 230) {
-      this.text = new Text(this, 100, 30, 250, 250, "Ah da ist ja das arme Ding gefangen in der Zeitschleife. Laufe zum Ende dieser Zeitlinie und du schaffst diesen Teil der Zeitschleife zu entkommen. Ach ja ich hab da etwas gehört, um die Zeitschleife endgültig zu verlassen, musst du den Raum-Zeitkrümmer finden. Der ist glaub ich auf dem Mars ca. 600 Jahre in der Zukunft, ich glaub nicht, dass du so lange warten willst.", 100)
+      this.text = new Text(this, 100, 630, 250, 250, "Ah da ist ja das arme Ding gefangen in der Zeitschleife. Laufe zum Ende dieser Zeitlinie und du schaffst diesen Teil der Zeitschleife zu entkommen. Ach ja ich hab da etwas gehört, um die Zeitschleife endgültig zu verlassen, musst du den Raum-Zeitkrümmer finden. Der ist glaub ich auf dem Mars ca. 600 Jahre in der Zukunft, ich glaub nicht, dass du so lange warten willst.", 100)
     }
 
     if (this.player.x >= 2500) {
@@ -348,13 +347,12 @@ export default class Level5 extends Phaser.Scene {
       this.ammoText.setScrollFactor(0)
       this.shildText.setScrollFactor(0)
       this.ammo = 1000
-      this.enemy6.patroling(1800, 3200, 350)
-      this.enemy7.patroling(1800, 3200, 150)
-      this.enemy8.patroling(1800, 3200, 500)
-      this.enemy9.patroling(1800, 3200, 300)
-      this.enemy10.patroling(1800, 3200, 200)
+      this.enemy6.patroling(2000, 3100, 350)
+      this.enemy7.patroling(2000, 3100, 150)
+      this.enemy8.patroling(2000, 3100, 500)
+      this.enemy9.patroling(2000, 3100, 300)
+      this.enemy10.patroling(2000, 3100, 200)
     }
-
 
     if(this.hasOrb === true && cursor.shift.isDown) {
 
@@ -362,19 +360,19 @@ export default class Level5 extends Phaser.Scene {
       this.hasOrb = false
     }
     if (this.player.x >= 1080) {
-      new Platform(this, 1, 12, 1050, 480)
+      new Platform(this, 0, 14, 1050, 480, 'platform_level_2')
     }
 
-    if (this.player.x >= 1750 && this.player.y <= 330) {
-      new Platform(this, 10, 1, 1780, 350)
+    if (this.player.x >= 1750 && this.player.y <= 930) {
+      new Platform(this, 10, 1, 1780, 350, 'platform_level_2')
       this.enemy3.patroling(1100, 1800, 350)
       this.enemy4.patroling(1100, 1800, 250)
       this.enemy5.patroling(1100, 1800, 150)
     }
 
     // scroll the texture of the tilesprites proportionally to the camera scroll
-    this.mountain.tilePositionX = this.myCam.scrollX * .3;
-    this.mountain.tilePositionY = this.myCam.scrollY * .3;
+    this.background.tilePositionX = this.myCam.scrollX * .3;
+    this.background.tilePositionY = this.myCam.scrollY;
     this.ammoText.setScrollFactor(0)
     this.shildText.setScrollFactor(0)
 
@@ -393,7 +391,7 @@ export default class Level5 extends Phaser.Scene {
       for(let i = 0; i <= 5; i++) {
         let yVelocity = Math.floor(Math.random() * 401)
         x = x + step
-        var bomb = this.bombs.create(x, 400, 'bomb');
+        var bomb = this.bombs.create(x, 1000, 'bomb');
         bomb.setBounce(1);
         if (i % 2 === 0) {
           yVelocity = -Math.abs(yVelocity)

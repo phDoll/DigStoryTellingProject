@@ -34,30 +34,30 @@ export default class Level4 extends Phaser.Scene {
     this.spikes = this.physics.add.staticGroup();
 
 
-    new Platform(this, 24, 1, 0, 600, 'platform_level_2')
-    new Platform(this, 12, 1, 200, 400, 'platform_level_2')
-    new Platform(this, 30, 1, 400, 180, 'platform_level_2')
-    new Platform(this, 6, 1, 600, 550, 'platform_level_2')
-    new Platform(this, 6, 1, 900, 350, 'platform_level_2')
-    new Platform(this, 200, 1, 1400, 600, 'platform_level_2')
+    new Platform(this, 24, 0, 0, 600, 'platform_level_2')
+    new Platform(this, 12, 0, 200, 400, 'platform_level_2')
+    new Platform(this, 30, 0, 400, 180, 'platform_level_2')
+    new Platform(this, 6, 0, 600, 550, 'platform_level_2')
+    new Platform(this, 6, 0, 900, 350, 'platform_level_2')
+    new Platform(this, 200, 0, 1400, 600, 'platform_level_2')
 
     // Spike
     new Spikes(this, 3, 0, 600, 547, 'spike')
 
     // Enemy Chase
-    new Platform(this, 1, 64, 1500, 500, 'platform_level_2')
+    new Platform(this, 0, 64, 1500, 500, 'platform_level_2')
     new Spikes(this, 10, 0, 1600, 597, 'spike')
-    new Platform(this, 1, 1, 1650, 500, 'platform_level_2')
-    new Platform(this, 1, 1, 1750, 450, 'platform_level_2')
-    new Platform(this, 1, 20, 2900, 600, 'platform_level_2')
-    new Platform(this, 30, 1, 1900, 350, 'platform_level_2')
-    new Platform(this, 50, 1, 2200, 500, 'platform_level_2')
-    new Platform(this, 1, 15, 2200, 500, 'platform_level_2')
-    new Platform(this, 1, 11, 1900, 350, 'platform_level_2')
-    new Platform(this, 24, 1, 1900, 250, 'platform_level_2')
-    new Platform(this, 1, 32, 1900, 120, 'platform_level_2')
-    new Platform(this, 24, 1, 1900, 120, 'platform_level_2')
-    new Platform(this, 1, 14, 2140, 250, 'platform_level_2')
+    new Platform(this, 0, 0, 1650, 500, 'platform_level_2')
+    new Platform(this, 0, 0, 1750, 450, 'platform_level_2')
+    new Platform(this, 0, 20, 2900, 600, 'platform_level_2')
+    new Platform(this, 30, 0, 1900, 350, 'platform_level_2')
+    new Platform(this, 50, 0, 2200, 500, 'platform_level_2')
+    new Platform(this, 0, 15, 2200, 500, 'platform_level_2')
+    new Platform(this, 0, 11, 1900, 350, 'platform_level_2')
+    new Platform(this, 24, 0, 1900, 250, 'platform_level_2')
+    new Platform(this, 0, 32, 1900, 120, 'platform_level_2')
+    new Platform(this, 24, 0, 1900, 120, 'platform_level_2')
+    new Platform(this, 0, 14, 2140, 250, 'platform_level_2')
     new Spikes(this, 5, 0, 2820, 597, 'spike')
     new Spikes(this, 3, 0, 1900, 247, 'spike')
 
