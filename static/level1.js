@@ -150,7 +150,7 @@ export default class Level1 extends Phaser.Scene {
     let cursor = this.cursor.getCursor()
 
     if(this.player.x >= 430) {
-      this.text = new Text(this, 400, 630, 300, 300, "Ah da ist ja das arme Ding gefangen in der Zeitschleife. Laufe zum Ende dieser Zeitlinie und du schaffst diesen Teil der Zeitschleife zu entkommen. Ach ja ich hab da etwas gehört, um die Zeitschleife endgültig zu verlassen, musst du den Raum-Zeitkrümmer finden. Der ist glaub ich auf dem Mars ca. 600 Jahre in der Zukunft, ich glaub nicht, dass du so lange warten willst.", 0, 10)
+      this.text = new Text(this, 400, 810, 300, 150, "Ah da ist ja das arme Ding gefangen in der Zeitschleife. Laufe zum Ende dieser Zeitlinie und du schaffst diesen Teil der Zeitschleife zu entkommen.", 0, 10)
     }
 
     if(this.player.y >= this.spawnPoint.y +  50) {

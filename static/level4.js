@@ -242,7 +242,7 @@ export default class Level4 extends Phaser.Scene {
     }
 
     if(this.player.x >= 230) {
-      this.text = new Text(this, 50, 600, 300, 300, "Ah da ist ja das arme Ding gefangen in der Zeitschleife. Laufe zum Ende dieser Zeitlinie und du schaffst diesen Teil der Zeitschleife zu entkommen. Ach ja ich hab da etwas gehört, um die Zeitschleife endgültig zu verlassen, musst du den Raum-Zeitkrümmer finden. Der ist glaub ich auf dem Mars ca. 600 Jahre in der Zukunft, ich glaub nicht, dass du so lange warten willst.", 130, 10)
+      this.text = new Text(this, 50, 620, 300, 260, "Ah da ist ja das arme Ding gefangen in der Zeitschleife. Laufe zum Ende dieser Zeitlinie und du schaffst diesen Teil der Zeitschleife zu entkommen. Schon wieder die Erde. Aber zu dieser Zeit wurde der Zeitmanipulator auf der Erde entwickelt. Du musst ihn bekommen, damit du zu dem Raum/Zeit Krümmer gelangen kannst.", 130, 10)
     }
 
     if(this.player.y >= this.spawnPoint.y + 50) {

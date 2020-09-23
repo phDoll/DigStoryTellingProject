@@ -334,7 +334,7 @@ export default class Level5 extends Phaser.Scene {
     }
 
     if(this.player.x >= 230) {
-      this.text = new Text(this, 50, 600, 300, 300, "Ah da ist ja das arme Ding gefangen in der Zeitschleife. Laufe zum Ende dieser Zeitlinie und du schaffst diesen Teil der Zeitschleife zu entkommen. Ach ja ich hab da etwas gehört, um die Zeitschleife endgültig zu verlassen, musst du den Raum-Zeitkrümmer finden. Der ist glaub ich auf dem Mars ca. 600 Jahre in der Zukunft, ich glaub nicht, dass du so lange warten willst.", 130, 10)
+      this.text = new Text(this, 50, 700, 300, 200, "Ah da ist ja das arme Ding gefangen in der Zeitschleife. Laufe zum Ende dieser Zeitlinie und du schaffst diesen Teil der Zeitschleife zu entkommen. Mars check, richtige Zeit check. Auf geht es hol dir das Teil.", 130, 10)
     }
 
     if(this.player.y >= this.spawnPoint.y + 50) {
