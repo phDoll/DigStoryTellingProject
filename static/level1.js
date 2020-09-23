@@ -12,6 +12,10 @@ export default class Level1 extends Phaser.Scene {
   constructor() {
     super("Level1");
     this.hasOrb = false
+    this.spawnPoint = {
+      x: 50,
+      y: 1000
+    }
   }
   create() {
     this.gameOver = false
@@ -35,7 +39,7 @@ export default class Level1 extends Phaser.Scene {
     new Platform(this, 64, 0, 400, 450, 'platform_level_1')
 
     this.spikes = this.physics.add.staticGroup();
-    new Spikes(this, 3, 0, 1400, 590, 'spike')
+    new Spikes(this, 3, 0, 1400, 597, 'spike')
     new Platform(this, 8, 0, 1400, 600, 'platform_level_1')
 
 
@@ -66,7 +70,7 @@ export default class Level1 extends Phaser.Scene {
     this.finish = this.physics.add.sprite(3150, 1100, 'finish')
     this.physics.add.collider(this.finish, this.platforms)
 
-    this.start = this.physics.add.sprite(50, 980, 'start')
+    this.start = this.physics.add.sprite(this.spawnPoint.x, this.spawnPoint.y - 20, 'start')
     this.start.body.allowGravity = false
 
     this.portal = this.physics.add.sprite(1900, 820, 'teleporter')
@@ -76,7 +80,7 @@ export default class Level1 extends Phaser.Scene {
     this.physics.add.collider(this.orb, this.platforms)
 
     // add player
-    this.player = new Player(this, 'dude', 50, 1000).getPlayer()
+    this.player = new Player(this, 'dude', this.spawnPoint.x, this.spawnPoint.y).getPlayer()
     this.npc = new NPC(this, 'beaver', 450, 1030).getNPC()
     this.npc.body.allowGravity = false
     // create an animation for the player
@@ -149,8 +153,22 @@ export default class Level1 extends Phaser.Scene {
       this.text = new Text(this, 400, 630, 300, 300, "Ah da ist ja das arme Ding gefangen in der Zeitschleife. Laufe zum Ende dieser Zeitlinie und du schaffst diesen Teil der Zeitschleife zu entkommen. Ach ja ich hab da etwas gehört, um die Zeitschleife endgültig zu verlassen, musst du den Raum-Zeitkrümmer finden. Der ist glaub ich auf dem Mars ca. 600 Jahre in der Zukunft, ich glaub nicht, dass du so lange warten willst.", 0, 10)
     }
 
-    if(this.player.y >= 1150) {
+    if(this.player.y >= this.spawnPoint.y +  50) {
       this.start.destroy()
+    }
+
+    if (this.player.x >= 1450) {
+      this.spawnPoint = {
+        x: 1450,
+        y: 1100
+      }
+    }
+
+    if (this.player.x >= 2340) {
+      this.spawnPoint = {
+        x: 2340,
+        y: 300
+      }
     }
 
 

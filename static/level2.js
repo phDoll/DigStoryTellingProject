@@ -11,6 +11,10 @@ export default class Level2 extends Phaser.Scene {
   constructor() {
     super("Level2");
     this.hasOrb = false
+    this.spawnPoint = {
+      x: 50,
+      y: 1000
+    }
   }
   create() {
     this.gameOver = false
@@ -51,7 +55,7 @@ export default class Level2 extends Phaser.Scene {
     new Platform(this, 12, 0, 1900, 290, 'platform_level_2')
     new Platform(this, 0, 14, 1900, 290, 'platform_level_2')
     new Platform(this, 0, 14, 2020, 290, 'platform_level_2')
-    new Spikes(this, 6, 0, 1910, 120, 'spike')
+    new Spikes(this, 6, 0, 1910, 147, 'spike')
     this.portal = this.physics.add.sprite(1980, 850, 'teleporter')
     this.physics.add.collider(this.portal, this.platforms)
 
@@ -75,7 +79,7 @@ export default class Level2 extends Phaser.Scene {
     new Spikes(this, 12, 0, 1200, 33, 'spike_turned')
 
     // add player
-    this.player = new Player(this, 'dude', 50, 1000).getPlayer()
+    this.player = new Player(this, 'dude', this.spawnPoint.x, this.spawnPoint.y).getPlayer()
     // create an animation for the player
     this.cursor = new Cursor(this, this.player, -200, true, false, false)
     // allow key inputs to control the player
@@ -84,7 +88,7 @@ export default class Level2 extends Phaser.Scene {
     this.finish = this.physics.add.sprite(3150, 900, 'finish')
     this.physics.add.collider(this.finish, this.platforms)
 
-    this.start = this.physics.add.sprite(50, 980, 'start')
+    this.start = this.physics.add.sprite(this.spawnPoint.x, this.spawnPoint.y - 20, 'start')
     this.start.body.allowGravity = false
 
     this.orb = this.physics.add.sprite(1850, -20, 'blue_ball')
@@ -153,8 +157,22 @@ export default class Level2 extends Phaser.Scene {
       this.text = new Text(this, 10, 740, 300, 300, "Ah da ist ja das arme Ding gefangen in der Zeitschleife. Laufe zum Ende dieser Zeitlinie und du schaffst diesen Teil der Zeitschleife zu entkommen. Ach ja ich hab da etwas gehört, um die Zeitschleife endgültig zu verlassen, musst du den Raum-Zeitkrümmer finden. Der ist glaub ich auf dem Mars ca. 600 Jahre in der Zukunft, ich glaub nicht, dass du so lange warten willst.", 170, 10)
     }
 
-    if(this.player.y >= 1150) {
+    if(this.player.y >= this.spawnPoint.y + 50) {
       this.start.destroy()
+    }
+
+    if (this.player.x >= 980) {
+      this.spawnPoint = {
+        x: 980,
+        y: 1100
+      }
+    }
+
+    if (this.player.x >= 2250 && this.player.y >= 900) {
+      this.spawnPoint = {
+        x: 2250,
+        y: 880
+      }
     }
 
     if(this.hasOrb === true && cursor.shift.isDown) {

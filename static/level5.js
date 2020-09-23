@@ -20,6 +20,10 @@ export default class Level5 extends Phaser.Scene {
     this.count = 0;
     this.activeBombs = 0;
     this.setPatroling = false;
+    this.spawnPoint = {
+      x: 50,
+      y: 1000
+    }
   }
   create() {
     this.gameOver = false
@@ -81,11 +85,11 @@ export default class Level5 extends Phaser.Scene {
     new Platform(this, 12, 1, 2600, 150, 'platform_level_2')
     new Platform(this, 12, 1, 2100, 600, 'platform_level_2')
 
-    this.start = this.physics.add.sprite(50, 980, 'start')
+    this.start = this.physics.add.sprite(this.spawnPoint.x, this.spawnPoint.y -20, 'start')
     this.start.body.allowGravity = false
 
     // add player
-    this.player = new Player(this, 'dude', 50, 1000).getPlayer()
+    this.player = new Player(this, 'dude', this.spawnPoint.x, this.spawnPoint.y).getPlayer()
     // create an animation for the player
     this.cursor = new Cursor(this, this.player, -250, true, true, true)
     // allow key inputs to control the player
@@ -333,8 +337,29 @@ export default class Level5 extends Phaser.Scene {
       this.text = new Text(this, 50, 600, 300, 300, "Ah da ist ja das arme Ding gefangen in der Zeitschleife. Laufe zum Ende dieser Zeitlinie und du schaffst diesen Teil der Zeitschleife zu entkommen. Ach ja ich hab da etwas gehört, um die Zeitschleife endgültig zu verlassen, musst du den Raum-Zeitkrümmer finden. Der ist glaub ich auf dem Mars ca. 600 Jahre in der Zukunft, ich glaub nicht, dass du so lange warten willst.", 130, 10)
     }
 
-    if(this.player.y >= 1150) {
+    if(this.player.y >= this.spawnPoint.y + 50) {
       this.start.destroy()
+    }
+
+    if (this.player.x >= 940 && this.player.y >= 900) {
+      this.spawnPoint = {
+        x: 940,
+        y: 1100
+      }
+    }
+
+    if (this.player.x >= 940 && this.player.y >= 900) {
+      this.spawnPoint = {
+        x: 940,
+        y: 1100
+      }
+    }
+
+    if (this.player.x >= 2020) {
+      this.spawnPoint = {
+        x: 2020,
+        y: 350
+      }
     }
 
     if (this.player.x >= 2500) {
@@ -385,7 +410,7 @@ export default class Level5 extends Phaser.Scene {
       this.activeBombs = 1
       let x = 1100;
       let step = 120;
-      for(let i = 0; i <= 5; i++) {
+      for(let i = 0; i <= 2; i++) {
         let yVelocity = Math.floor(Math.random() * 401)
         x = x + step
         var bomb = this.bombs.create(x, 1000, 'bomb');
