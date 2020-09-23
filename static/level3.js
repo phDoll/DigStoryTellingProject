@@ -17,61 +17,55 @@ export default class Level3 extends Phaser.Scene {
   create() {
     this.gameOver = false
     // create an tiled sprite with the size of our game screen
-    this.mountain = this.add.tileSprite(0, 0, 800, 600, "sky");
+    this.background = this.add.tileSprite(0, 0, 3200, 1200, "jupiter");
     // Set its pivot to the top left corner
-    this.mountain.setOrigin(0, 0);
+    this.background.setOrigin(0, 0);
     // fixe it so it won't move when the camera moves.
     // Instead we are moving its texture on the update
-    this.mountain.setScrollFactor(0);
+    this.background.setScrollFactor(0);
 
     this.platforms = this.physics.add.staticGroup();
     this.spikes = this.physics.add.staticGroup();
 
-
     // World Bounds
-
-    new Platform(this, 320, 1, 0, 600)
-    new Platform(this, 2, 80, -20, 600)
-    new Platform(this, 1, 80, 3200, 600)
-    new Platform(this, 320, 1, 0, 0)
-
-
-    // Spikes
+    new Platform(this, 320, 1, 0, 600, 'platform_level_2')
+    new Platform(this, 2, 80, -20, 600, 'platform_level_2')
+    new Platform(this, 1, 80, 3200, 600, 'platform_level_2')
+    new Platform(this, 320, 1, 0, 0, 'platform_level_2')
 
     // First Room
-    new Platform(this, 2, 80, 500, 520)
-    new Platform(this, 2, 80, 1000, 520)
+    new Platform(this, 2, 80, 500, 520, 'platform_level_2')
+    new Platform(this, 2, 80, 1000, 520, 'platform_level_2')
 
     // Second Room
-    new Platform(this, 2, 80, 2000, 520)
-    new Platform(this, 1, 1, 1100, 400)
-    new Platform(this, 1, 1, 1400, 400)
-    new Platform(this, 1, 1, 1600, 550)
-    new Platform(this, 1, 1, 1700, 200)
-    new Platform(this, 12, 1, 1750, 300)
-    new Platform(this, 1, 8, 1800, 100)
-    new Spikes(this, 50, 1100, 580)
-    new Spikes(this, 6, 1760, 280)
-    new Spikes(this, 6, 1760, 280)
-    new Spikes(this, 1, 1980, 450)
+    new Platform(this, 2, 80, 2000, 520, 'platform_level_2')
+    new Platform(this, 1, 1, 1100, 400, 'platform_level_2')
+    new Platform(this, 1, 1, 1400, 400, 'platform_level_2')
+    new Platform(this, 1, 1, 1600, 550, 'platform_level_2')
+    new Platform(this, 1, 1, 1700, 200, 'platform_level_2')
+    new Platform(this, 12, 1, 1750, 300, 'platform_level_2')
+    new Platform(this, 1, 8, 1800, 100, 'platform_level_2')
+    new Spikes(this, 80, 0, 1100, 597, 'spike')
+    new Spikes(this, 6, 0, 1760, 297, 'spike')
+    new Spikes(this, 1, 8, 1997, 500, 'spike_flipped')
 
     // Thrid Room
-    new Platform(this, 2, 80, 3000, 520)
-    new Platform(this, 1, 8, 2200, 600)
-    new Platform(this, 20, 1, 2400, 300)
-    new Platform(this, 1, 8, 2600, 600)
-    new Spikes(this, 3, 2550, 580)
+    new Platform(this, 2, 80, 3000, 520, 'platform_level_2')
+    new Platform(this, 1, 8, 2200, 600, 'platform_level_2')
+    new Platform(this, 20, 1, 2400, 300, 'platform_level_2')
+    new Platform(this, 1, 8, 2600, 600, 'platform_level_2')
+    new Spikes(this, 3, 0, 2550, 597, 'spike')
 
-    new Spikes(this, 200, 0, 20)
+    new Spikes(this, 200, 0, 0, 3, 'spike_turned')
 
     // add player
-    this.player = new Player(this, 'dude', 50, 450).getPlayer()
+    this.player = new Player(this, 'dude', 50, 1150).getPlayer()
     // create an animation for the player
     this.cursor = new Cursor(this, this.player, -250, true, true, false)
     // allow key inputs to control the player
     this.cursors = this.input.keyboard.createCursorKeys();
 
-    this.finish = this.physics.add.sprite(3150, 300, 'finish')
+    this.finish = this.physics.add.sprite(3150, 900, 'finish')
     this.physics.add.collider(this.finish, this.platforms)
 
     this.physics.add.overlap(this.player, this.portal, this.teleport, null, this);
@@ -84,20 +78,15 @@ export default class Level3 extends Phaser.Scene {
     this.physics.add.collider(this.bombs, this.platforms);
 
     this.physics.add.collider(this.player, this.bombs, this.hitBomb, null, this);
-
-
-
-
     this.physics.add.collider(this.player, this.platforms);
     this.physics.add.collider(this.player, this.spikes, this.hitSpike, null, this);
-    this.npc = new NPC(this, 'dude', 250, 500).getNPC()
-    this.physics.add.collider(this.npc, this.platforms);
+    this.npc = new NPC(this, 'beaver', 250, 1180).getNPC()
+    this.npc.body.allowGravity = false
 
-    // this.physics.add.collider(this.player, this.spikes, this.hitSpike, null, this);
 
     // set workd bounds to allow camera to follow the player
     this.myCam = this.cameras.main;
-    this.myCam.setBounds(0, -600, 800 * 4, 600 * 2);
+    this.myCam.setBounds(0, 0, 800 * 4, 600 * 2);
 
     // making the camera follow the player
     this.myCam.startFollow(this.player);
@@ -134,7 +123,7 @@ export default class Level3 extends Phaser.Scene {
   }
 
   checkGameOver() {
-    if (this.player.y > 620 || this.gameOver) {
+    if (this.player.y > 1220 || this.gameOver) {
       this.gameOver = this.add.tileSprite( Math.floor(this.myCam.scrollX), 0, 800, 600, "noon");
       this.gameOver.setOrigin(0, 0);
       this.physics.pause();
@@ -148,7 +137,7 @@ export default class Level3 extends Phaser.Scene {
     let cursor = this.cursor.getCursor()
 
     if(this.player.x >= 230) {
-      this.text = new Text(this, 200, 220, 250, 250, "Ah da ist ja das arme Ding gefangen in der Zeitschleife. Laufe zum Ende dieser Zeitlinie und du schaffst diesen Teil der Zeitschleife zu entkommen. Ach ja ich hab da etwas gehört, um die Zeitschleife endgültig zu verlassen, musst du den Raum-Zeitkrümmer finden. Der ist glaub ich auf dem Mars ca. 600 Jahre in der Zukunft, ich glaub nicht, dass du so lange warten willst.", 0)
+      this.text = new Text(this, 200, 850, 250, 250, "Ah da ist ja das arme Ding gefangen in der Zeitschleife. Laufe zum Ende dieser Zeitlinie und du schaffst diesen Teil der Zeitschleife zu entkommen. Ach ja ich hab da etwas gehört, um die Zeitschleife endgültig zu verlassen, musst du den Raum-Zeitkrümmer finden. Der ist glaub ich auf dem Mars ca. 600 Jahre in der Zukunft, ich glaub nicht, dass du so lange warten willst.", 0)
     }
 
     if(this.hasOrb === true && cursor.shift.isDown) {
@@ -159,9 +148,8 @@ export default class Level3 extends Phaser.Scene {
     this.checkGameOver()
 
     // scroll the texture of the tilesprites proportionally to the camera scroll
-    this.mountain.tilePositionX = this.myCam.scrollX * .3;
-    this.mountain.tilePositionY = this.myCam.scrollY * .3;
-
+    this.background.tilePositionX = this.myCam.scrollX * .3;
+    this.background.tilePositionY = this.myCam.scrollY;
 
 
     if (this.player.x > 500 && this.player.x < 900 && this.firstStage === 0) {
@@ -170,7 +158,7 @@ export default class Level3 extends Phaser.Scene {
       let step = 40;
       for(let i = 0; i <= 10; i++) {
         x = x + step
-        var bomb = this.bombs.create(x, 50, 'bomb');
+        var bomb = this.bombs.create(x, 650, 'bomb');
         bomb.setBounce(1);
         bomb.setVelocity(0, 200);
       }
@@ -180,15 +168,15 @@ export default class Level3 extends Phaser.Scene {
       this.thirdStage = 1
       let x = 2010;
       let step = 100;
-      for(let i = 0; i <= 10; i++) {
+      for(let i = 0; i < 3; i++) {
         let yVelocity = Math.floor(Math.random() * 401)
         x = x + step
-        var bomb = this.bombs.create(x, 50, 'bomb');
+        var bomb = this.bombs.create(x, 650, 'bomb');
         bomb.setBounce(1);
         if (i % 2 === 0) {
           yVelocity = -Math.abs(yVelocity)
         }
-        bomb.setVelocity(yVelocity, 100);
+        bomb.setVelocity(yVelocity, 50);
       }
     }
   }
