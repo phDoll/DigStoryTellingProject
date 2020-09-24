@@ -95,8 +95,8 @@ export default class Level5 extends Phaser.Scene {
     // allow key inputs to control the player
     this.cursors = this.input.keyboard.createCursorKeys();
 
-    this.ammoText = this.add.text(16, 16, 'Munition: ' + this.ammo, { fontFamily: 'DogicaRegular', fontSize: 22, fill: '#ffffff' });
-    this.shildText = this.add.text(16, 60, 'Schild verfügbar', { fontFamily: 'DogicaRegular', fontSize: 22, fill: '#ffffff' });
+    this.ammoText = this.add.text(16, 16, 'Munition: ' + this.ammo, { fontFamily: 'DogicaRegular', fontSize: 14, fill: '#ffffff' });
+    this.shildText = this.add.text(16, 60, 'Schild: 1', { fontFamily: 'DogicaRegular', fontSize: 14, fill: '#ffffff' });
 
     this.portal = this.physics.add.sprite(-20, 1100, 'teleporter')
     this.physics.add.overlap(this.player, this.portal, this.teleport, null, this);
@@ -157,6 +157,15 @@ export default class Level5 extends Phaser.Scene {
 
     this.checkpoint = this.add.text(250, 100, '', { fontFamily: 'DogicaRegular', fontSize: 22, fill: '#ffffff', align: 'center'});
     this.checkpoint.setScrollFactor(0)
+
+    this.levelText = this.add.text(240, 20, '- Mars: Jahr 3400 -', { fontFamily: 'DogicaRegular', fontSize: 18, fill: '#ffffff', align: 'center'});
+    this.levelText.setScrollFactor(0)
+
+    this.fightText = this.add.text(200, 100, '', { fontFamily: 'DogicaRegular', fontSize: 22, fill: '#ffffff', align: 'center'});
+    this.fightText.setScrollFactor(0)
+
+    this.finish = this.physics.add.sprite(2500, 970, 'finish')
+    this.finish.body.allowGravity = false
   }
 
   hitSpike() {
@@ -324,7 +333,7 @@ export default class Level5 extends Phaser.Scene {
       this.shildText.setText("Schild: Aktiv")
       let gameObject = this
       setInterval(function(){ gameObject.activeShild = false;
-      gameObject.shildText.setText("Kein Schild verfügbar"); }, 3000);
+      gameObject.shildText.setText("Schild: 0"); }, 3000);
     }
   }
 
@@ -369,6 +378,8 @@ export default class Level5 extends Phaser.Scene {
     }
 
     if (this.player.x >= 2500) {
+      this.finish.destroy()
+      this.fightText.setText("Besiege alle Gegner")
       this.myCam.stopFollow(this.player)
       this.ammoText.setScrollFactor(0)
       this.shildText.setScrollFactor(0)
@@ -391,7 +402,7 @@ export default class Level5 extends Phaser.Scene {
       new Platform(this, 0, 14, 1050, 480, 'platform_level_2')
     }
 
-    if (this.player.x >= 1750 && this.player.y <= 930) {
+    if (this.player.x >= 1750 && this.player.y <= 930 && this.player.x <= 1850) {
       new Platform(this, 10, 1, 1780, 350, 'platform_level_2')
       this.enemy3.patroling(1100, 1800, 350)
       this.enemy4.patroling(1100, 1800, 250)
@@ -429,6 +440,7 @@ export default class Level5 extends Phaser.Scene {
     }
 
     if (this.count === 3) {
+      this.fightText.setText('')
       this.finish = this.physics.add.sprite(2500, 970, 'finish')
       this.finish.body.allowGravity = false
       this.physics.add.overlap(this.player, this.finish, this.endGame, null, this);

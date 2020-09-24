@@ -81,6 +81,9 @@ export default class Level1 extends Phaser.Scene {
     this.orb = this.physics.add.sprite(900, 800, 'blue_ball')
     this.physics.add.collider(this.orb, this.platforms)
 
+    this.npc3 = new NPC(this, 'beaver', 840, 830).getNPC()
+    this.npc3.body.allowGravity = false
+
     // add player
     this.player = new Player(this, 'dude', this.spawnPoint.x, this.spawnPoint.y).getPlayer()
     this.npc = new NPC(this, 'beaver', 450, 1030).getNPC()
@@ -108,6 +111,9 @@ export default class Level1 extends Phaser.Scene {
 
     this.checkpoint = this.add.text(250, 100, '', { fontFamily: 'DogicaRegular', fontSize: 22, fill: '#ffffff', align: 'center'});
     this.checkpoint.setScrollFactor(0)
+
+    this.levelText = this.add.text(240, 20, '- Erde: Jahr 2050 -', { fontFamily: 'DogicaRegular', fontSize: 18, fill: '#ffffff', align: 'center'});
+    this.levelText.setScrollFactor(0)
   }
 
 
@@ -160,6 +166,10 @@ export default class Level1 extends Phaser.Scene {
 
     if(this.player.x >= 3070) {
       this.text = new Text(this, 2800,870, 300, 220, "Du hast es bis ans Ende dieser Zeitlinie geschafft. In der nächsten Zeitlinie wirst deinen Doppelsprung benutzen müssen. Drücke während des Springens die Sprungtaste.", 200, 10)
+    }
+
+    if(this.player.x >= 840) {
+      this.text = new Text(this, 780 , 610, 350, 150, "Das ist eine Zeitkugel, wenn du sie einsammelst kannst du sie 1x benutzen in dem du SHIFT drückst sie teleportiert sich ein kleines Stück zurück. Benutze sie weise.", 0, 10)
     }
 
     if(this.player.y >= this.spawnPoint.y +  50) {

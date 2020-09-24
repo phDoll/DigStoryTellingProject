@@ -31,6 +31,7 @@ export default class Level3 extends Phaser.Scene {
     this.platforms = this.physics.add.staticGroup();
     this.spikes = this.physics.add.staticGroup();
 
+
     // World Bounds
     new Platform(this, 320, 1, 0, 600, 'platform_level_2')
     new Platform(this, 2, 80, -20, 600, 'platform_level_2')
@@ -104,6 +105,9 @@ export default class Level3 extends Phaser.Scene {
 
     this.checkpoint = this.add.text(250, 100, '', { fontFamily: 'DogicaRegular', fontSize: 22, fill: '#ffffff', align: 'center'});
     this.checkpoint.setScrollFactor(0)
+
+    this.levelText = this.add.text(240, 20, '- Mars: Jahr 2800 -', { fontFamily: 'DogicaRegular', fontSize: 18, fill: '#ffffff', align: 'center'});
+    this.levelText.setScrollFactor(0)
   }
 
   hitSpike() {

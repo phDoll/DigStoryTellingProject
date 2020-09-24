@@ -114,6 +114,9 @@ export default class Level2 extends Phaser.Scene {
 
     this.checkpoint = this.add.text(250, 100, '', { fontFamily: 'DogicaRegular', fontSize: 22, fill: '#ffffff', align: 'center'});
     this.checkpoint.setScrollFactor(0)
+
+    this.levelText = this.add.text(220, 20, '- Jupiter: Jahr 2800 -', { fontFamily: 'DogicaRegular', fontSize: 18, fill: '#ffffff', align: 'center'});
+    this.levelText.setScrollFactor(0)
   }
 
   hitSpike() {

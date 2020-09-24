@@ -26,7 +26,7 @@ window.onload = function(){
           gravity: {
             y: 400
           },
-          fps: 30
+          fps: 20
 
       }
     },

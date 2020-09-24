@@ -32,8 +32,8 @@ export default class Level4 extends Phaser.Scene {
     // Instead we are moving its texture on the update
     this.background.setScrollFactor(0);
 
-    this.ammoText = this.add.text(16, 16, 'Munition: ' + this.ammo, { fontFamily: 'DogicaRegular', fontSize: 22, fill: '#ffffff' });
-    this.shildText = this.add.text(16, 60, 'Schild verfügbar', { fontFamily: 'DogicaRegular', fontSize: 22, fill: '#ffffff'});
+    this.ammoText = this.add.text(16, 16, 'Munition: ' + this.ammo, { fontFamily: 'DogicaRegular', fontSize: 14, fill: '#ffffff' });
+    this.shildText = this.add.text(16, 60, 'Schild: 1', { fontFamily: 'DogicaRegular', fontSize: 14, fill: '#ffffff'});
     this.platforms = this.physics.add.staticGroup();
     this.spikes = this.physics.add.staticGroup();
 
@@ -123,6 +123,9 @@ export default class Level4 extends Phaser.Scene {
 
     this.checkpoint = this.add.text(250, 100, '', { fontFamily: 'DogicaRegular', fontSize: 22, fill: '#ffffff', align: 'center'});
     this.checkpoint.setScrollFactor(0)
+
+    this.levelText = this.add.text(240, 20, '- Erde: Jahr 2400 -', { fontFamily: 'DogicaRegular', fontSize: 18, fill: '#ffffff', align: 'center'});
+    this.levelText.setScrollFactor(0)
   }
 
   hitSpike() {
@@ -233,7 +236,7 @@ export default class Level4 extends Phaser.Scene {
       this.shildText.setText("Schild: Aktiv")
       let gameObject = this
       setInterval(function(){ gameObject.activeShild = false;
-      gameObject.shildText.setText("Kein Schild verfügbar"); }, 3000);
+      gameObject.shildText.setText("Schild: 0"); }, 3000);
     }
   }
 
