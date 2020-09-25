@@ -15,7 +15,7 @@ export default class storyScreen extends Phaser.Scene {
     // Instead we are moving its texture on the update
     this.background.setScrollFactor(0);
     this.platforms = this.physics.add.staticGroup();
-    new Platform(this, 80, 2, 0, 0, 'platform_level_1')
+    new Platform(this, 80, 2, 0, 0, 'platform_level_1', true)
 
     this.npc = new NPC(this, 'beaver_standing', 50, 570).getNPC()
     this.npc.body.allowGravity = false

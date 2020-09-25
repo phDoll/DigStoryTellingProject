@@ -25,7 +25,7 @@ export default class Level4 extends Phaser.Scene {
   create() {
     this.gameOver = false
     // create an tiled sprite with the size of our game screen
-    this.background = this.add.tileSprite(0, 0, 3200, 1200, "jupiter");
+    this.background = this.add.tileSprite(0, 0, 3200, 1200, "erde2");
     // Set its pivot to the top left corner
     this.background.setOrigin(0, 0);
     // fixe it so it won't move when the camera moves.
@@ -36,34 +36,34 @@ export default class Level4 extends Phaser.Scene {
     this.shildText = this.add.text(16, 60, 'Schild: 1', { fontFamily: 'DogicaRegular', fontSize: 14, fill: '#ffffff'});
     this.platforms = this.physics.add.staticGroup();
     this.spikes = this.physics.add.staticGroup();
-
-
-    new Platform(this, 24, 0, 0, 600, 'platform_level_2')
-    new Platform(this, 12, 0, 200, 400, 'platform_level_2')
-    new Platform(this, 30, 0, 400, 180, 'platform_level_2')
-    new Platform(this, 6, 0, 600, 550, 'platform_level_2')
-    new Platform(this, 6, 0, 900, 350, 'platform_level_2')
-    new Platform(this, 200, 0, 1400, 600, 'platform_level_2')
-
-    // Spike
     new Spikes(this, 3, 0, 600, 547, 'spike')
-
-    // Enemy Chase
-    new Platform(this, 0, 64, 1500, 500, 'platform_level_2')
-    new Spikes(this, 10, 0, 1600, 597, 'spike')
-    new Platform(this, 0, 0, 1650, 500, 'platform_level_2')
-    new Platform(this, 0, 0, 1750, 450, 'platform_level_2')
-    new Platform(this, 0, 20, 2900, 600, 'platform_level_2')
-    new Platform(this, 30, 0, 1900, 350, 'platform_level_2')
-    new Platform(this, 50, 0, 2200, 500, 'platform_level_2')
-    new Platform(this, 0, 15, 2200, 500, 'platform_level_2')
-    new Platform(this, 0, 11, 1900, 350, 'platform_level_2')
-    new Platform(this, 24, 0, 1900, 250, 'platform_level_2')
-    new Platform(this, 0, 32, 1900, 120, 'platform_level_2')
-    new Platform(this, 24, 0, 1900, 120, 'platform_level_2')
-    new Platform(this, 0, 14, 2140, 250, 'platform_level_2')
     new Spikes(this, 5, 0, 2820, 597, 'spike')
     new Spikes(this, 3, 0, 1900, 247, 'spike')
+    new Spikes(this, 10, 0, 1600, 597, 'spike')
+
+
+    new Platform(this, 24, 0, 0, 600, 'platform_level_4', false)
+    new Platform(this, 12, 0, 200, 400, 'platform_level_4', false)
+    new Platform(this, 30, 0, 400, 180, 'platform_level_4', false)
+    new Platform(this, 6, 0, 600, 550, 'platform_level_4', false)
+    new Platform(this, 6, 0, 900, 350, 'platform_level_4', false)
+    new Platform(this, 200, 0, 1400, 600, 'platform_level_4', false)
+
+    // Spike
+
+    // Enemy Chase
+    new Platform(this, 0, 64, 1500, 500, 'platform_level_4', false)
+    new Platform(this, 0, 0, 1650, 500, 'platform_level_4', false)
+    new Platform(this, 0, 0, 1750, 450, 'platform_level_4', false)
+    new Platform(this, 0, 20, 2900, 600, 'platform_level_4', false)
+    new Platform(this, 30, 0, 1900, 350, 'platform_level_4', false)
+    new Platform(this, 50, 0, 2200, 500, 'platform_level_4', false)
+    new Platform(this, 0, 15, 2200, 500, 'platform_level_4', false)
+    new Platform(this, 0, 11, 1900, 350, 'platform_level_4', false)
+    new Platform(this, 24, 0, 1900, 250, 'platform_level_4', false)
+    new Platform(this, 0, 32, 1900, 120, 'platform_level_4', false)
+    new Platform(this, 24, 0, 1900, 120, 'platform_level_4', false)
+    new Platform(this, 0, 14, 2140, 250, 'platform_level_4', false)
 
     this.start = this.physics.add.sprite(this.spawnPoint.x, this.spawnPoint.y -20, 'start')
     this.start.body.allowGravity = false

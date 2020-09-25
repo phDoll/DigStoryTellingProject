@@ -14,13 +14,13 @@ export default class Level1 extends Phaser.Scene {
     this.hasOrb = false
     this.spawnPoint = {
       x: 50,
-      y: 1000
+      y: 500
     }
   }
   create() {
     this.gameOver = false
     // create an tiled sprite with the size of our game screen
-    this.background = this.add.tileSprite(0, 0, 3200, 1200, "jupiter");
+    this.background = this.add.tileSprite(0, 0, 3200, 1200, "erde1");
     // Set its pivot to the top left corner
     this.background.setOrigin(0,0);
     // fixe it so it won't move when the camera moves.
@@ -28,44 +28,44 @@ export default class Level1 extends Phaser.Scene {
     this.background.setScrollFactor(0);
 
     this.platforms = this.physics.add.staticGroup();
-
-    new Platform(this, 12, 0, 0, 600, 'platform_level_1')
-    new Platform(this, 12, 0, 600, 360, 'platform_level_1')
-    new Platform(this, 12, 0, 800, 250, 'platform_level_1')
-    new Platform(this, 12, 0, 1200, 500, 'platform_level_1')
-
-
-    new Platform(this, 12, 0, 250, 500, 'platform_level_1')
-    new Platform(this, 64, 0, 400, 450, 'platform_level_1')
-
     this.spikes = this.physics.add.staticGroup();
+    new Spikes(this, 0, 7, 2500, -20, 'spike_flipped')
     new Spikes(this, 3, 0, 1400, 597, 'spike')
-    new Platform(this, 8, 0, 1400, 600, 'platform_level_1')
+    new Spikes(this, 2, 0, 2300, 97, 'spike')
+
+    new Platform(this, 12, 0, 0, 600, 'platform_level_1', true)
+    new Platform(this, 12, 0, 600, 360, 'platform_level_1', true)
+    new Platform(this, 12, 0, 800, 260, 'platform_level_1', true)
+    new Platform(this, 12, 0, 1200, 500, 'platform_level_1', true)
+
+
+    new Platform(this, 12, 0, 250, 500, 'platform_level_1', true)
+    new Platform(this, 64, 0, 400, 450, 'platform_level_1', true)
+
+    new Platform(this, 8, 0, 1400, 600, 'platform_level_1', true)
 
 
 
-    new Platform(this, 20, 0, 3000, 600, 'platform_level_1')
+    new Platform(this, 20, 0, 3000, 600, 'platform_level_1', true)
 
     // Alternative Route
 
-    new Platform(this, 8, 0,1450, 390, 'platform_level_1')
-    new Platform(this, 0, 10, 1450, 390, 'platform_level_1')
-    new Platform(this, 8, 0, 1600, 300, 'platform_level_1')
-    new Platform(this, 8, 0, 1850, 250, 'platform_level_1')
-    new Platform(this, 0, 8, 1930, 250, 'platform_level_1')
+    new Platform(this, 8, 0,1450, 390, 'platform_level_1', true)
+    new Platform(this, 0, 10, 1450, 390, 'platform_level_1', true)
+    new Platform(this, 8, 0, 1600, 300, 'platform_level_1', true)
+    new Platform(this, 8, 0, 1850, 250, 'platform_level_1', true)
+    new Platform(this, 0, 8, 1930, 250, 'platform_level_1', true)
 
-    new Platform(this, 4, 0, 1600, 500, 'platform_level_1')
-    new Platform(this, 4, 0, 1800, 450, 'platform_level_1')
-    new Platform(this, 4, 0, 2000, 380, 'platform_level_1')
-    new Platform(this, 4, 0, 2100, 280, 'platform_level_1')
-    new Platform(this, 4, 0, 2200, 170, 'platform_level_1')
-    new Spikes(this, 2, 0, 2300, 97, 'spike')
-    new Platform(this, 2, 0, 2320, 100, 'platform_level_1')
-    new Platform(this, 1, 0, 2420, -10, 'platform_level_1')
-    new Spikes(this, 0, 7, 2500, -20, 'spike_flipped')
-    new Platform(this, 1, 0, 2550, -70, 'platform_level_1')
-    new Platform(this, 1, 0, 2650, -170, 'platform_level_1')
-    new Platform(this, 30, 0, 2750, -270, 'platform_level_1')
+    new Platform(this, 4, 0, 1600, 500, 'platform_level_1', true)
+    new Platform(this, 4, 0, 1800, 450, 'platform_level_1', true)
+    new Platform(this, 4, 0, 2000, 380, 'platform_level_1', true)
+    new Platform(this, 4, 0, 2100, 280, 'platform_level_1', true)
+    new Platform(this, 4, 0, 2200, 170, 'platform_level_1', true)
+    new Platform(this, 4, 0, 2300, 100, 'platform_level_1', true)
+    new Platform(this, 1, 0, 2420, -10, 'platform_level_1', true)
+    new Platform(this, 1, 0, 2550, -70, 'platform_level_1', true)
+    new Platform(this, 1, 0, 2650, -170, 'platform_level_1', true)
+    new Platform(this, 30, 0, 2750, -270, 'platform_level_1', true)
 
     this.finish = this.physics.add.sprite(3150, 1100, 'finish')
     this.physics.add.collider(this.finish, this.platforms)
@@ -81,7 +81,7 @@ export default class Level1 extends Phaser.Scene {
     this.orb = this.physics.add.sprite(900, 800, 'blue_ball')
     this.physics.add.collider(this.orb, this.platforms)
 
-    this.npc3 = new NPC(this, 'beaver', 840, 830).getNPC()
+    this.npc3 = new NPC(this, 'beaver', 840, 840).getNPC()
     this.npc3.body.allowGravity = false
 
     // add player
@@ -89,7 +89,7 @@ export default class Level1 extends Phaser.Scene {
     this.npc = new NPC(this, 'beaver', 450, 1030).getNPC()
     this.npc.body.allowGravity = false
     // create an animation for the player
-    this.cursor = new Cursor(this, this.player, -300, false, false, false)
+    this.cursor = new Cursor(this, this.player, -320, false, false, false)
 
     // allow key inputs to control the player
     this.cursors = this.input.keyboard.createCursorKeys();

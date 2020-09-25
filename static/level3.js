@@ -21,7 +21,7 @@ export default class Level3 extends Phaser.Scene {
   create() {
     this.gameOver = false
     // create an tiled sprite with the size of our game screen
-    this.background = this.add.tileSprite(0, 0, 3200, 1200, "jupiter");
+    this.background = this.add.tileSprite(0, 0, 3200, 1200, "mars1");
     // Set its pivot to the top left corner
     this.background.setOrigin(0, 0);
     // fixe it so it won't move when the camera moves.
@@ -30,38 +30,37 @@ export default class Level3 extends Phaser.Scene {
 
     this.platforms = this.physics.add.staticGroup();
     this.spikes = this.physics.add.staticGroup();
-
-
-    // World Bounds
-    new Platform(this, 320, 1, 0, 600, 'platform_level_2')
-    new Platform(this, 2, 80, -20, 600, 'platform_level_2')
-    new Platform(this, 1, 80, 3200, 600, 'platform_level_2')
-    new Platform(this, 320, 1, 0, 0, 'platform_level_2')
-
-    // First Room
-    new Platform(this, 2, 80, 500, 520, 'platform_level_2')
-    new Platform(this, 2, 80, 1000, 520, 'platform_level_2')
-
-    // Second Room
-    new Platform(this, 2, 80, 2000, 520, 'platform_level_2')
-    new Platform(this, 1, 1, 1100, 400, 'platform_level_2')
-    new Platform(this, 1, 1, 1400, 400, 'platform_level_2')
-    new Platform(this, 1, 1, 1600, 550, 'platform_level_2')
-    new Platform(this, 1, 1, 1700, 200, 'platform_level_2')
-    new Platform(this, 12, 1, 1750, 300, 'platform_level_2')
-    new Platform(this, 1, 8, 1800, 100, 'platform_level_2')
     new Spikes(this, 80, 0, 1100, 597, 'spike')
     new Spikes(this, 6, 0, 1760, 297, 'spike')
     new Spikes(this, 1, 8, 1997, 500, 'spike_flipped')
+    new Spikes(this, 3, 0, 2550, 597, 'spike')
+    new Spikes(this, 200, 0, 0, 3, 'spike_turned')
+
+
+    // World Bounds
+    new Platform(this, 320, 1, 0, 600, 'platform_level_3', true)
+    new Platform(this, 2, 80, -20, 600, 'platform_level_3', true)
+    new Platform(this, 1, 80, 3200, 600, 'platform_level_3', true)
+    new Platform(this, 320, 1, 0, 0, 'platform_level_3', true)
+
+    // First Room
+    new Platform(this, 2, 80, 500, 500, 'platform_level_3', true)
+    new Platform(this, 2, 80, 1000, 500, 'platform_level_3', true)
+
+    // Second Room
+    new Platform(this, 2, 80, 2000, 500, 'platform_level_3', true)
+    new Platform(this, 1, 1, 1100, 400, 'platform_level_3', true)
+    new Platform(this, 1, 1, 1400, 400, 'platform_level_3', true)
+    new Platform(this, 1, 1, 1600, 550, 'platform_level_3', true)
+    new Platform(this, 1, 1, 1700, 200, 'platform_level_3', true)
+    new Platform(this, 12, 1, 1750, 300, 'platform_level_3', true)
+    new Platform(this, 1, 8, 1800, 100, 'platform_level_3', true)
 
     // Thrid Room
-    new Platform(this, 2, 80, 3000, 520, 'platform_level_2')
-    new Platform(this, 1, 8, 2200, 600, 'platform_level_2')
-    new Platform(this, 20, 1, 2400, 300, 'platform_level_2')
-    new Platform(this, 1, 8, 2600, 600, 'platform_level_2')
-    new Spikes(this, 3, 0, 2550, 597, 'spike')
-
-    new Spikes(this, 200, 0, 0, 3, 'spike_turned')
+    new Platform(this, 2, 80, 3000, 500, 'platform_level_3', true)
+    new Platform(this, 1, 8, 2200, 600, 'platform_level_3', true)
+    new Platform(this, 20, 1, 2400, 300, 'platform_level_3', true)
+    new Platform(this, 1, 8, 2600, 600, 'platform_level_3', true)
 
     // add player
     this.player = new Player(this, 'dude', this.spawnPoint.x, this.spawnPoint.y).getPlayer()
@@ -196,7 +195,7 @@ export default class Level3 extends Phaser.Scene {
 
     // scroll the texture of the tilesprites proportionally to the camera scroll
     this.background.tilePositionX = this.myCam.scrollX * .3;
-    this.background.tilePositionY = this.myCam.scrollY;
+    this.background.tilePositionY = this.myCam.scrollY * .5;
 
 
     if (this.player.x > 500 && this.player.x < 900 && this.firstStage === 0) {
@@ -211,7 +210,7 @@ export default class Level3 extends Phaser.Scene {
       }
     }
 
-    if (this.player.x > 2000 && this.player.x < 3000 && this.thirdStage === 0) {
+    if (this.player.x > 2070 && this.player.x < 3000 && this.thirdStage === 0) {
       this.thirdStage = 1
       let x = 2010;
       let step = 100;

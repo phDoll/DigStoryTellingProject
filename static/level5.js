@@ -28,7 +28,7 @@ export default class Level5 extends Phaser.Scene {
   create() {
     this.gameOver = false
     // create an tiled sprite with the size of our game screen
-    this.background = this.add.tileSprite(0, 0, 3200, 1200, "jupiter");
+    this.background = this.add.tileSprite(0, 0, 3200, 1200, "mars2");
     // Set its pivot to the top left corner
     this.background.setOrigin(0, 0);
     // fixe it so it won't move when the camera moves.
@@ -37,35 +37,6 @@ export default class Level5 extends Phaser.Scene {
 
     this.platforms = this.physics.add.staticGroup();
     this.spikes = this.physics.add.staticGroup();
-
-
-    new Platform(this, 24, 1, 0, 600, 'platform_level_2')
-    new Platform(this, 12, 1, 200, 400, 'platform_level_2')
-    new Platform(this, 24, 1, 400, 100, 'platform_level_2')
-    new Platform(this, 0, 40, 640, 100, 'platform_level_2')
-    new Platform(this, 24, 1, 640, -300, 'platform_level_2')
-    new Platform(this, 0, 90, 870, 600, 'platform_level_2')
-    new Platform(this, 0, 120, 1050, 350, 'platform_level_2')
-    new Platform(this, 24, 1, 100, -200, 'platform_level_2')
-    new Platform(this, 4, 1, 1000, -450, 'platform_level_2')
-    new Platform(this, 4, 1, 880, -280, 'platform_level_2')
-    new Platform(this, 10, 1, 880, 120, 'platform_level_2')
-    new Platform(this, 7, 1, 990, -150, 'platform_level_2')
-    new Platform(this, 100, 1, 880, 600, 'platform_level_2')
-
-
-    // Labyrinth
-    new Platform(this, 0, 12, 1050, 600, 'platform_level_2')
-    new Platform(this, 73, 1, 1050, 350, 'platform_level_2')
-    new Platform(this, 0, 80, 1880, 600, 'platform_level_2')
-    new Platform(this, 68, 1, 1200, 100, 'platform_level_2')
-    new Platform(this, 69, 1, 1200, -200, 'platform_level_2')
-    new Platform(this, 0, 30, 1200, 100, 'platform_level_2')
-    new Platform(this, 4, 1, 1160, 60, 'platform_level_2')
-    new Platform(this, 73, 1, 1050, -350, 'platform_level_2')
-
-
-
     // Spikes
     new Spikes(this, 1, 0, 640, -303, 'spike')
     new Spikes(this, 2, 0, 890, -283, 'spike')
@@ -73,17 +44,45 @@ export default class Level5 extends Phaser.Scene {
     new Spikes(this, 7, 0, 890, 117, 'spike')
     new Spikes(this, 2, 0, 1000, 597, 'spike')
     new Spikes(this, 8, 0, 1250, -203, 'spike')
-    new Spikes(this, 8, 0, 1450, -347, 'spike_turned')
-    new Spikes(this, 4, 0, 1650, -347, 'spike_turned')
+    new Spikes(this, 6, 0, 1450, -347, 'spike_turned')
     new Spikes(this, 4, 0, 1550, -203, 'spike')
     new Spikes(this, 4, 0, 1700, -203, 'spike')
 
+
+    new Platform(this, 24, 1, 0, 600, 'platform_level_5', true)
+    new Platform(this, 12, 1, 200, 400, 'platform_level_5', true)
+    new Platform(this, 24, 1, 400, 100, 'platform_level_5', true)
+    new Platform(this, 0, 40, 640, 100, 'platform_level_5', true)
+    new Platform(this, 24, 1, 640, -300, 'platform_level_5', true)
+    new Platform(this, 0, 90, 870, 600, 'platform_level_5', true)
+    new Platform(this, 0, 120, 1050, 350, 'platform_level_5', true)
+    new Platform(this, 24, 1, 100, -200, 'platform_level_5', true)
+    new Platform(this, 4, 1, 1000, -450, 'platform_level_5', true)
+    new Platform(this, 4, 1, 880, -280, 'platform_level_5', true)
+    new Platform(this, 10, 1, 880, 120, 'platform_level_5', true)
+    new Platform(this, 7, 1, 990, -150, 'platform_level_5', true)
+    new Platform(this, 100, 1, 880, 600, 'platform_level_5', true)
+
+
+    // Labyrinth
+    new Platform(this, 0, 12, 1050, 600, 'platform_level_5', true)
+    new Platform(this, 73, 1, 1050, 350, 'platform_level_5', true)
+    new Platform(this, 0, 80, 1880, 600, 'platform_level_5', true)
+    new Platform(this, 68, 1, 1200, 100, 'platform_level_5', true)
+    new Platform(this, 69, 1, 1200, -200, 'platform_level_5', true)
+    new Platform(this, 0, 30, 1200, 100, 'platform_level_5', true)
+    new Platform(this, 4, 1, 1160, 60, 'platform_level_5', true)
+    new Platform(this, 73, 1, 1050, -350, 'platform_level_5', true)
+
+
+
+
     // Final
-    new Platform(this, 6, 1, 2000, -100, 'platform_level_2')
-    new Platform(this, 24, 1, 2100, 200, 'platform_level_2')
-    new Platform(this, 24, 1, 2400, 400, 'platform_level_2')
-    new Platform(this, 12, 1, 2600, 150, 'platform_level_2')
-    new Platform(this, 12, 1, 2100, 600, 'platform_level_2')
+    new Platform(this, 6, 1, 2000, -100, 'platform_level_5', true)
+    new Platform(this, 24, 1, 2100, 200, 'platform_level_5', true)
+    new Platform(this, 24, 1, 2400, 400, 'platform_level_5', true)
+    new Platform(this, 12, 1, 2600, 150, 'platform_level_5', true)
+    new Platform(this, 12, 1, 2100, 600, 'platform_level_5', true)
 
     this.start = this.physics.add.sprite(this.spawnPoint.x, this.spawnPoint.y -20, 'start')
     this.start.body.allowGravity = false
@@ -164,7 +163,7 @@ export default class Level5 extends Phaser.Scene {
     this.fightText = this.add.text(200, 100, '', { fontFamily: 'DogicaRegular', fontSize: 22, fill: '#ffffff', align: 'center'});
     this.fightText.setScrollFactor(0)
 
-    this.finish = this.physics.add.sprite(2500, 970, 'finish')
+    this.finish = this.physics.add.sprite(2500, 975, 'space-time-curvature')
     this.finish.body.allowGravity = false
   }
 
@@ -399,11 +398,11 @@ export default class Level5 extends Phaser.Scene {
       this.hasOrb = false
     }
     if (this.player.x >= 1080) {
-      new Platform(this, 0, 14, 1050, 480, 'platform_level_2')
+      new Platform(this, 0, 14, 1050, 480, 'platform_level_5', true)
     }
 
     if (this.player.x >= 1750 && this.player.y <= 930 && this.player.x <= 1850) {
-      new Platform(this, 10, 1, 1780, 350, 'platform_level_2')
+      new Platform(this, 10, 1, 1780, 350, 'platform_level_5', true)
       this.enemy3.patroling(1100, 1800, 350)
       this.enemy4.patroling(1100, 1800, 250)
       this.enemy5.patroling(1100, 1800, 150)
@@ -441,7 +440,7 @@ export default class Level5 extends Phaser.Scene {
 
     if (this.count === 3) {
       this.fightText.setText('')
-      this.finish = this.physics.add.sprite(2500, 970, 'finish')
+      this.finish = this.physics.add.sprite(2500, 975, 'space-time-curvature')
       this.finish.body.allowGravity = false
       this.physics.add.overlap(this.player, this.finish, this.endGame, null, this);
     }

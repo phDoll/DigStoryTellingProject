@@ -30,10 +30,12 @@ window.onload = function(){
 
       }
     },
-    scene: [preloadGame, titleScreen, storyScreen, Level1, Level2, Level3, Level4, Level5, endScreen]
+    scene: [preloadGame, titleScreen, storyScreen, Level1, Level2, Level3, Level4, Level5, endScreen],
   }
   game = new Phaser.Game(gameConfig);
 }
+
+
 
 export default class titleScreen extends Phaser.Scene {
   constructor() {
@@ -59,24 +61,64 @@ export default class titleScreen extends Phaser.Scene {
     this.shield = this.add.text(450, 350, 'Shild: X', { fontFamily: 'DogicaRegular', fontSize: 18, fill: '#ffffff', align: 'center'});
     this.Weapon = this.add.text(450, 400, 'Weapon: Z', { fontFamily: 'DogicaRegular', fontSize: 18, fill: '#ffffff', align: 'center'});
 
+    this.level1Button = this.add.text(50, 460, ' Level 1 ', { fontFamily: 'DogicaRegular', fontSize: 14, fill: '#ed3621', align: 'center'});
+    this.level1Button.setInteractive();
+    this.level1Button.on('pointerdown', () => this.changeScene('Level1') );
+    this.level1Button.on('pointerover', () => this.enterHoverState(this.level1Button) );
+    this.level1Button.on('pointerout', () => this.enterRestState(this.level1Button) );
+
+    this.level2Button = this.add.text(190, 460, ' Level 2 ', { fontFamily: 'DogicaRegular', fontSize: 14, fill: '#ed3621', align: 'center'});
+    this.level2Button.setInteractive();
+    this.level2Button.on('pointerdown', () => this.changeScene('Level2') );
+    this.level2Button.on('pointerover', () => this.enterHoverState(this.level2Button) );
+    this.level2Button.on('pointerout', () => this.enterRestState(this.level2Button) );
+
+
+    this.level3Button = this.add.text(330, 460, ' Level 3 ', { fontFamily: 'DogicaRegular', fontSize: 14, fill: '#ed3621', align: 'center'});
+    this.level3Button.setInteractive();
+    this.level3Button.on('pointerdown', () => this.changeScene('Level3') );
+    this.level3Button.on('pointerover', () => this.enterHoverState(this.level3Button) );
+    this.level3Button.on('pointerout', () => this.enterRestState(this.level3Button) );
+
+
+    this.level4Button = this.add.text(470, 460, ' Level 4 ', { fontFamily: 'DogicaRegular', fontSize: 14, fill: '#ed3621', align: 'center'});
+    this.level4Button.setInteractive();
+    this.level4Button.on('pointerdown', () => this.changeScene('Level4') );
+    this.level4Button.on('pointerover', () => this.enterHoverState(this.level4Button) );
+    this.level4Button.on('pointerout', () => this.enterRestState(this.level4Button) );
+
+
+    this.level5Button = this.add.text(610, 460, ' Level 5 ', { fontFamily: 'DogicaRegular', fontSize: 14, fill: '#ed3621', align: 'center'});
+    this.level5Button.setInteractive();
+    this.level5Button.on('pointerdown', () => this.changeScene('Level5') );
+    this.level5Button.on('pointerover', () => this.enterHoverState(this.level5Button) );
+    this.level5Button.on('pointerout', () => this.enterRestState(this.level5Button) );
+
     // this.text = new Text(this, 150, 200, 400, 250, "Die Menschen haben sich auf die Planeten im Sonnensystem ausgebreitet. Bei einem Kampf um die Vorherrschaft in dem Sonnensystem wurde so viel Energie freigesetzt, das die Raumzeit verändert wurde. Ein Blitz traf Stellar und sie wurde Ohnmächtig. Nun ist sie gefangen in einer Raum-Zeitschleife. Um aus der Raum-Zeitschleife zu entkommen muss sie den Raum-Zeitkrümmer finden. Dieser wird im Jahr 3400 auf dem Planeten Merkur gebaut. Mit Hilfe dieses Raum-Zeitkrümmers kann sie aus der Raum-Zeitschleife entfliehen.", 0, 10)
-    this.startButton = this.add.text(200, 500, '- Start Game -', { fontFamily: 'DogicaRegular', fontSize: 26, fill: '#ed3621', align: 'center'});
+    this.startButton = this.add.text(200, 520, '- Play Story -', { fontFamily: 'DogicaRegular', fontSize: 26, fill: '#ed3621', align: 'center'});
     this.startButton.setInteractive();
-    this.startButton.on('pointerdown', () => this.changeScene() );
-    this.startButton.on('pointerover', () => this.enterHoverState() );
-    this.startButton.on('pointerout', () => this.enterRestState() );
+    this.startButton.on('pointerdown', () => this.changeScene("storyScreen") );
+    this.startButton.on('pointerover', () => this.enterHoverState(this.startButton) );
+    this.startButton.on('pointerout', () => this.enterRestState(this.startButton) );
+
+    var frameNames = this.textures.get('stellar2').getFrameNames();
+    console.log(frameNames);
   }
 
-  changeScene() {
-    this.scene.start('storyScreen');
+  changeScene(scene) {
+    var audio = new Audio('static/assets/space_theme_song.wav');
+    audio.play();
+    audio.volume = 0.1
+    audio.loop = true
+    this.scene.start(scene);
   }
 
-  enterHoverState() {
-    this.startButton.setStyle({fill: "#289900"})
+  enterHoverState(button) {
+    button.setStyle({fill: "#289900"})
   }
 
-  enterRestState() {
-    this.startButton.setStyle({fill: "#ed3621"})
+  enterRestState(button) {
+    button.setStyle({fill: "#ed3621"})
   }
 
 
