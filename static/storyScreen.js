@@ -32,7 +32,7 @@ export default class storyScreen extends Phaser.Scene {
   }
 
   changeScene() {
-    this.scene.start('Level5');
+    this.scene.start('Level1');
   }
 
   enterHoverState() {

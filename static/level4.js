@@ -69,7 +69,7 @@ export default class Level4 extends Phaser.Scene {
     this.start.body.allowGravity = false
 
     // add player
-    this.player = new Player(this, 'dude', this.spawnPoint.x, this.spawnPoint.y).getPlayer()
+    this.player = new Player(this, 'stellar', this.spawnPoint.x, this.spawnPoint.y).getPlayer()
     // create an animation for the player
     this.cursor = new Cursor(this, this.player, -200, true, true, false)
     // allow key inputs to control the player
@@ -280,12 +280,13 @@ export default class Level4 extends Phaser.Scene {
 
     // scroll the texture of the tilesprites proportionally to the camera scroll
     this.background.tilePositionX = this.myCam.scrollX * .3;
-    this.background.tilePositionY = this.myCam.scrollY;
+    this.background.tilePositionY = this.myCam.scrollY * .2;
     this.ammoText.setScrollFactor(0)
     this.shildText.setScrollFactor(0)
 
     let gameObject = this
     this.input.keyboard.on('keydown_Z', function(e) {
+      gameObject.player.anims.play('fire_right', true);
       gameObject.fireWeapon()
     })
     this.input.keyboard.on('keydown_X', function(e) {

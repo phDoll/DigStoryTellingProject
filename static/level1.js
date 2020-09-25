@@ -14,7 +14,7 @@ export default class Level1 extends Phaser.Scene {
     this.hasOrb = false
     this.spawnPoint = {
       x: 50,
-      y: 500
+      y: 1000
     }
   }
   create() {
@@ -85,7 +85,7 @@ export default class Level1 extends Phaser.Scene {
     this.npc3.body.allowGravity = false
 
     // add player
-    this.player = new Player(this, 'dude', this.spawnPoint.x, this.spawnPoint.y).getPlayer()
+    this.player = new Player(this, 'stellar', this.spawnPoint.x, this.spawnPoint.y).getPlayer()
     this.npc = new NPC(this, 'beaver', 450, 1030).getNPC()
     this.npc.body.allowGravity = false
     // create an animation for the player

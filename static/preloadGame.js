@@ -19,7 +19,7 @@ export default class preloadGame extends Phaser.Scene{
     this.load.image("platform_level_1", "static/assets/wood.png");
     this.load.image("platform_level_1_left", "static/assets/wood_end_left.png");
     this.load.image("platform_level_1_right", "static/assets/wood_end_right.png");
-    this.load.image("platform_level_2", "static/assets/stonewall.png");
+    this.load.image("platform_level_2", "static/assets/moonstone.png");
     this.load.image("platform_level_4", "static/assets/grass.png");
     this.load.image("platform_level_3", "static/assets/moonstone-middle.png");
     this.load.image("platform_level_3_left", "static/assets/moonstone.png");
@@ -38,10 +38,29 @@ export default class preloadGame extends Phaser.Scene{
     this.load.image('shoot', 'static/assets/bullet76.png');
     this.load.image('shoot_left', 'static/assets/bullet76_left.png');
     this.load.image('space-time-curvature', 'static/assets/raum-zeit-krümmer.png');
-    // this.load.spritesheet('dude', 'static/assets/dude.png', { frameWidth: 32, frameHeight: 48 });
-    this.load.atlas("stellar", "static/assets/stellar_movement.png", "static/assets/stellar_movement.json");
-    this.load.atlas("stellar2", "static/assets/stellar_movement_new.png", "static/assets/stellar_movement_new.json");
-    this.load.spritesheet('dude', 'static/assets/stellar_standing.png', { frameWidth: 32, frameHeight: 68 });
+    // this.load.atlas("stellar", "static/assets/movement.png", "static/assets/movement.json");
+    this.load.spritesheet('stellar', 'static/assets/stellar_standing.png', { frameWidth: 32, frameHeight: 68 })
+    this.load.spritesheet('stellar_right_01', 'static/assets/stellar_running_right_01.png', { frameWidth: 46, frameHeight: 68 })
+    this.load.spritesheet('stellar_right_02', 'static/assets/stellar_running_right_02.png', { frameWidth: 50, frameHeight: 68 })
+    this.load.spritesheet('stellar_right_03', 'static/assets/stellar_running_right_03.png', { frameWidth: 46, frameHeight: 68 })
+    this.load.spritesheet('stellar_right_04', 'static/assets/stellar_running_right_04.png', { frameWidth: 46, frameHeight: 68 })
+    this.load.spritesheet('stellar_right_05', 'static/assets/stellar_running_right_05.png', { frameWidth: 46, frameHeight: 68 })
+    this.load.spritesheet('stellar_right_06', 'static/assets/stellar_running_right_06.png', { frameWidth: 50, frameHeight: 68 })
+    this.load.spritesheet('stellar_right_07', 'static/assets/stellar_running_right_07.png', { frameWidth: 46, frameHeight: 68 })
+    this.load.spritesheet('stellar_right_08', 'static/assets/stellar_running_right_08.png', { frameWidth: 46, frameHeight: 68 })
+
+    this.load.spritesheet('stellar_left_01', 'static/assets/stellar_running_left_01.png', { frameWidth: 46, frameHeight: 68 })
+    this.load.spritesheet('stellar_left_02', 'static/assets/stellar_running_left_02.png', { frameWidth: 50, frameHeight: 68 })
+    this.load.spritesheet('stellar_left_03', 'static/assets/stellar_running_left_03.png', { frameWidth: 46, frameHeight: 68 })
+    this.load.spritesheet('stellar_left_04', 'static/assets/stellar_running_left_04.png', { frameWidth: 46, frameHeight: 68 })
+    this.load.spritesheet('stellar_left_05', 'static/assets/stellar_running_left_05.png', { frameWidth: 46, frameHeight: 68 })
+    this.load.spritesheet('stellar_left_06', 'static/assets/stellar_running_left_06.png', { frameWidth: 50, frameHeight: 68 })
+    this.load.spritesheet('stellar_left_07', 'static/assets/stellar_running_left_07.png', { frameWidth: 46, frameHeight: 68 })
+    this.load.spritesheet('stellar_left_08', 'static/assets/stellar_running_left_08.png', { frameWidth: 46, frameHeight: 68 })
+
+    this.load.spritesheet('stellar_fire_right', 'static/assets/stellar_running_right_gun_02.png', { frameWidth: 68, frameHeight: 68 })
+    this.load.spritesheet('stellar_fire_left', 'static/assets/stellar_running_left_gun_02.png', { frameWidth: 68, frameHeight: 68 })
+
     this.load.spritesheet('beaver', 'static/assets/beaver.png', { frameWidth: 48, frameHeight: 48 });
     this.load.spritesheet('beaver_standing', 'static/assets/beaver_standing.png', { frameWidth: 61, frameHeight: 43 });
     this.load.audio('background_music', ["static/assets/space_theme_song.mp3", "static/assets/space_theme_song.ogg"]);

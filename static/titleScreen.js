@@ -101,8 +101,6 @@ export default class titleScreen extends Phaser.Scene {
     this.startButton.on('pointerover', () => this.enterHoverState(this.startButton) );
     this.startButton.on('pointerout', () => this.enterRestState(this.startButton) );
 
-    var frameNames = this.textures.get('stellar2').getFrameNames();
-    console.log(frameNames);
   }
 
   changeScene(scene) {

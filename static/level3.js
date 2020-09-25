@@ -63,7 +63,7 @@ export default class Level3 extends Phaser.Scene {
     new Platform(this, 1, 8, 2600, 600, 'platform_level_3', true)
 
     // add player
-    this.player = new Player(this, 'dude', this.spawnPoint.x, this.spawnPoint.y).getPlayer()
+    this.player = new Player(this, 'stellar', this.spawnPoint.x, this.spawnPoint.y).getPlayer()
     // create an animation for the player
     this.cursor = new Cursor(this, this.player, -250, true, true, false)
     // allow key inputs to control the player

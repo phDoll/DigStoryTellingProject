@@ -46,7 +46,7 @@ import playGame from './titleScreen.js'
 //   this.load.image('mountain', 'static/assets/Mountain.png');
 //   this.load.image('noon', 'static/assets/noon.png');
 //   this.load.image('hill', 'static/assets/hill.png');
-//   this.load.spritesheet('dude', 'static/assets/dude.png', { frameWidth: 32, frameHeight: 48 });
+//   this.load.spritesheet('stellar', 'static/assets/stellar.png', { frameWidth: 32, frameHeight: 48 });
 // }
 
 // function create ()
@@ -57,7 +57,7 @@ import playGame from './titleScreen.js'
 //   scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '22px', fill: '#000' });
 //   console.log(this.scene.scene.cameras.main)
 //   camera = this.scene.scene.cameras.main
-//   player = new Player(this, 'dude').getPlayer()
+//   player = new Player(this, 'stellar').getPlayer()
 //   camera.x = 0
 //   camera.y = 0
 //   camera.startFollow(player)
